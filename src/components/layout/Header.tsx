@@ -1,16 +1,25 @@
-import { Link, useRouter } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 
 export default function Header() {
-  const router = useRouter();
-
-  // Determinar la ruta activa
-  const isActive = (path: string) => {
-    return router.state.location.pathname.startsWith(path);
-  };
+  const headerLinkStyle =
+    "transition hover:text-blue-600 [&.active]:text-blue-600 [&.active]:font-bold";
 
   return (
     <header className="py-4 border-b">
-      Buenas
+      <div className="container mx-auto flex justify-between items-center">
+        <Link to="/" className="text-xl font-bold">
+          Jean Marco Miranda
+        </Link>
+
+        <nav className="hidden md:flex space-x-8">
+          <Link to="/" className={headerLinkStyle}>
+            Inicio
+          </Link>
+          <Link to="/about" className={headerLinkStyle}>
+            Sobre Mí
+          </Link>
+        </nav>
+      </div>
     </header>
   );
 }

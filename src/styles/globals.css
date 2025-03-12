@@ -91,24 +91,6 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-@theme {
-  --color-background: hsl(0, 0%, 8%); /* Negro ligeramente más claro */
-  --color-foreground: hsl(0, 100%, 85%); /* Rojo más suave para mejor contraste */
-  --color-primary: hsl(0, 100%, 50%); /* Rojo intenso */
-  --color-secondary: hsl(0, 50%, 20%); /* Rojo oscuro */
-  --color-accent: hsl(0, 100%, 65%); /* Rojo más vibrante */
-  --color-highlight: hsl(42, 100%, 55%); /* Nuevo color: Amarillo dorado */
-}
-
-@theme .dark {
-  --color-background: hsl(0, 0%, 5%);
-  --color-foreground: hsl(0, 100%, 90%);
-  --color-primary: hsl(0, 100%, 55%);
-  --color-secondary: hsl(0, 50%, 15%);
-  --color-accent: hsl(0, 100%, 75%);
-  --color-highlight: hsl(42, 100%, 65%); /* Un poco más brillante en modo oscuro */
-}
-
 @layer base {
   * {
     @apply border-border outline-ring/50;

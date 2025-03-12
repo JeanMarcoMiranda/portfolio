@@ -1,6 +1,8 @@
 import { Layout } from "@/components/layout/Layout";
 import AboutPage from "@/pages/AboutPage";
 import HomePage from "@/pages/HomePage";
+import ProjectsDetailPage from "@/pages/ProjectsPage/ProjectsDetailPage";
+import ProjectsListPage from "@/pages/ProjectsPage/ProjectsListPage";
 import { createRootRoute, createRoute } from "@tanstack/react-router";
 
 export const rootRoute = createRootRoute({
@@ -19,4 +21,21 @@ export const aboutRoute = createRoute({
   component: AboutPage,
 });
 
-export const routes = [homeRoute, aboutRoute];
+export const projectsListRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/projects",
+  component: ProjectsListPage,
+});
+
+export const projectDetailRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/projects/$projectId",
+  component: ProjectsDetailPage,
+});
+
+export const routes = [
+  homeRoute,
+  aboutRoute,
+  projectsListRoute,
+  projectDetailRoute,
+];

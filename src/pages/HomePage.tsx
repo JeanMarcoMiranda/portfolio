@@ -1,6 +1,10 @@
+import Hero from "@/features/home/Hero"
+
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <div>
+      <Hero/>
+    </div>
   )
 }
 

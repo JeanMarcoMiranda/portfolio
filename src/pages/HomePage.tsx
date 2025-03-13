@@ -1,17 +1,17 @@
-import AboutPreview from "@/features/home/AboutPreview"
-import FeaturedProjects from "@/features/home/FeaturedProjects"
-import Hero from "@/features/home/Hero"
-import SkillsOverview from "@/features/home/SkillsOverview"
+import AboutPreview from "@/features/home/AboutPreview";
+import FeaturedProjects from "@/features/home/FeaturedProjects";
+import Hero from "@/features/home/Hero";
+import RecentPosts from "@/features/home/RecentPosts";
 
 const HomePage = () => {
   return (
-    <div>
-      <Hero/>
-      <AboutPreview/>
-      <FeaturedProjects/>
-      <SkillsOverview/>
-    </div>
-  )
-}
+    <>
+      <Hero />
+      <AboutPreview />
+      <RecentPosts />
+      <FeaturedProjects />
+    </>
+  );
+};
 
-export default HomePage
+export default HomePage;

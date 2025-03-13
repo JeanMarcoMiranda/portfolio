@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
-import { Menu, X } from "lucide-react";
+import { Menu, Moon, Sun, X } from "lucide-react";
+import { useState } from "react";
 
 const navItems = [
   { to: "/", label: "Inicio" },
@@ -12,12 +13,14 @@ const navItems = [
 ];
 
 export default function Header() {
+  const [darkMode, setDarkMode] = useState(false);
 
   return (
     <header className="border-b bg-background py-4">
       <div className="container mx-auto flex items-center justify-between px-4">
+        {/* Logo */}
         <Link to="/" className="text-2xl font-bold text-primary">
-          Jean Marco Miranda
+          JM
         </Link>
 
         {/* Navegación desktop */}
@@ -32,6 +35,17 @@ export default function Header() {
             </Link>
           ))}
         </nav>
+
+        {/* Botón de cambio de tema a la derecha */}
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => setDarkMode(!darkMode)}
+          aria-label="Toggle theme"
+          className="hidden md:flex"
+        >
+          {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+        </Button>
 
         {/* Menú móvil */}
         <Sheet>
@@ -66,32 +80,22 @@ export default function Header() {
                 </SheetTrigger>
               ))}
             </nav>
+
+            {/* Botón de cambio de tema en móvil */}
+            <div className="mt-6 flex justify-center">
+              <Button
+                variant="outline"
+                className="w-full py-2 flex items-center justify-center space-x-2"
+                onClick={() => setDarkMode(!darkMode)}
+                aria-label="Toggle theme"
+              >
+                {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+                <span>{darkMode ? "Modo Claro" : "Modo Oscuro"}</span>
+              </Button>
+            </div>
           </SheetContent>
         </Sheet>
       </div>
     </header>
-
-    // <header className="py-4 border-b">
-    //   <div className="container mx-auto flex justify-between items-center">
-    //     <Link to="/" className="text-xl font-bold">
-    //       Jean Marco Miranda
-    //     </Link>
-
-    //     {/* Navegación desktop */}
-    //     <nav className="hidden md:flex space-x-8">
-    //       <Link to="/" className={headerLinkStyle}>
-    //         Inicio
-    //       </Link>
-    //       <Link to="/about" className={headerLinkStyle}>
-    //         Sobre Mí
-    //       </Link>
-    //     </nav>
-
-    //     {/* Toggle menú móvil */}
-    //     <Button className="">
-
-    //     </Button>
-    //   </div>
-    // </header>
   );
 }

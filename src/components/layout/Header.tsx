@@ -3,6 +3,7 @@ import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { useState } from "react";
+import { ThemeToggle } from "../shared/ThemeToggle";
 
 const navItems = [
   { to: "/", label: "Inicio" },
@@ -36,16 +37,9 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Botón de cambio de tema a la derecha */}
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => setDarkMode(!darkMode)}
-          aria-label="Toggle theme"
-          className="hidden md:flex"
-        >
-          {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-        </Button>
+        {/* Botón de cambio de tema*/}
+        <ThemeToggle/>
+        
 
         {/* Menú móvil */}
         <Sheet>

@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Menu, Moon, Sun, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ThemeToggle } from "../shared/ThemeToggle";
 
 const navItems = [
@@ -15,9 +15,23 @@ const navItems = [
 
 export default function Header() {
   const [darkMode, setDarkMode] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="border-b bg-background py-4">
+    <header
+      className={`sticky top-0 z-50 border-b py-4 transition-colors backdrop-blur-md ${
+        isScrolled ? "bg-background/50 shadow-md" : "bg-transparent"
+      }`}
+    >
       <div className="container mx-auto flex items-center justify-between px-4">
         {/* Logo */}
         <Link to="/" className="text-2xl font-bold text-primary">
@@ -38,8 +52,7 @@ export default function Header() {
         </nav>
 
         {/* Botón de cambio de tema*/}
-        <ThemeToggle/>
-        
+        <ThemeToggle />
 
         {/* Menú móvil */}
         <Sheet>

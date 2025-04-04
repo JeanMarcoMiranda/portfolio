@@ -12,7 +12,7 @@ const roles = [
 
 const Hero = () => {
   return (
-    <section className="relative overflow-hidden bg-white py=20 dark:bg-gray-800">
+    <section className="relative overflow-hidden min-h-screen flex items-center justify-center bg-white dark:bg-gray-800">
       <div className="container mx-auto flex flex-col item-center px-4 text-center sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

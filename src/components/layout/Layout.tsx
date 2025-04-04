@@ -1,6 +1,7 @@
 import { HelmetProvider } from "react-helmet-async";
 import Header from "./Header";
 import { Outlet } from "@tanstack/react-router";
+import Footer from "./Footer";
 
 export function Layout() {
   return (
@@ -10,6 +11,7 @@ export function Layout() {
         <main className="flex-grow">
           <Outlet />
         </main>
+        <Footer />
       </div>
     </HelmetProvider>
   );

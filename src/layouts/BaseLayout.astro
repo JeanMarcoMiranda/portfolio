@@ -1,5 +1,5 @@
 ---
-
+import Header from "../components/navigation/Header.astro";
 ---
 
 <html lang="es" class="scroll-smooth">
@@ -10,8 +10,9 @@
         <title>Jean Marco Miranda | Portfolio</title>
         <link rel="stylesheet" href="/src/styles/global.css" />
     </head>
-    <body>
-        <main>
+    <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors">
+        <Header />
+        <main class="pt-20">
             <slot />
         </main>
     </body>

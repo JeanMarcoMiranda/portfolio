@@ -1,41 +1,281 @@
 ---
+// Hero.astro
 
+import {
+    siAndroid,
+    siKotlin,
+    siReact,
+    siAstro,
+    siTypescript,
+    siTailwindcss,
+} from "simple-icons/icons";
 ---
 
 <section
     id="hero"
-    class="relative flex min-h-screen flex-col items-center justify-center text-center px-6 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-950"
+    class="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300"
 >
-    <!-- Texto principal -->
-    <h1
-        class="text-4xl sm:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100"
+    <!-- Hero Content -->
+    <div
+        class="flex flex-col items-center space-y-6 sm:space-y-8 max-w-4xl mx-auto text-center"
     >
-        Hola, soy <span class="">Jean Marco Miranda</span>
-    </h1>
+        <!-- Avatar with animation -->
+        <div class="relative group">
+            <div
+                class="absolute -inset-1 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full blur opacity-30 group-hover:opacity-50 transition duration-300"
+            >
+            </div>
+            <img
+                src="https://i.pravatar.cc/150"
+                alt="Jean Marco Miranda profile"
+                class="relative w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full border-4 border-white dark:border-gray-800 shadow-xl transition-transform duration-300 group-hover:scale-105"
+            />
+            <div
+                class="absolute -bottom-2 -right-2 w-6 h-6 bg-green-500 border-4 border-white dark:border-gray-900 rounded-full"
+            >
+            </div>
+        </div>
 
-    <h2
-        class="mt-4 text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl"
-    >
-        Desarrollador web y mobile enfocado en crear experiencias modernas,
-        rapidas y accesibles
-    </h2>
+        <p
+            class="text-base sm:text-lg text-gray-600 dark:text-gray-400 transition-colors"
+        >
+            ¡Hola! Soy <span class="font-semibold text-gray-900 dark:text-white"
+                >Jean Marco Miranda</span
+            > 👋
+        </p>
 
-    <!-- CTA -->
-    <div class="mt-8 flex flex-wrap gap-4 justify-center">
-        <a
-            href="#projects"
-            class="px-6 py-3 rounded-full bg-blue-600 text-white font-medium hover:bg-blue-700 transition-all"
-            >Ver Proyectos</a
+        <h1
+            class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight transition-colors"
         >
-        <a
-            href="#contact"
-            class="px-6 py-3 rounded-full border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
-            >Contactame</a
+            Desarrollador de Software <br class="hidden sm:block" />
+            <span
+                class="bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text"
+                >Creando Experiencias Mobile y Web</span
+            >
+        </h1>
+
+        <p
+            class="max-w-2xl text-sm sm:text-base lg:text-lg text-gray-600 dark:text-gray-400 px-4 transition-colors"
         >
+            Desarrollador de software con experiencia en aplicaciones móviles
+            nativas para Android y desarrollo web moderno. Me apasiona crear
+            soluciones eficientes que combinan diseño intuitivo y código de
+            calidad.
+        </p>
+
+        <!-- Buttons -->
+        <div
+            class="flex flex-col sm:flex-row gap-4 mt-6 sm:mt-8 w-full sm:w-auto px-4 sm:px-0"
+        >
+            <a
+                href="#connect"
+                class="group px-6 sm:px-8 py-3 sm:py-4 bg-black dark:bg-white text-white dark:text-black rounded-full hover:bg-gray-800 dark:hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 font-medium text-sm sm:text-base flex items-center justify-center space-x-2"
+            >
+                <span>Contáctame</span>
+                <svg
+                    class="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+            </a>
+            <a
+                href="/resume.pdf"
+                class="px-6 sm:px-8 py-3 sm:py-4 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-500 transition-all font-medium text-sm sm:text-base flex items-center justify-center space-x-2"
+            >
+                <span>Mi CV</span>
+                <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"
+                    ></path>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Tech Stack -->
+        <div class="mt-12 sm:mt-16 px-4">
+            <p
+                class="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-500 uppercase tracking-wider mb-6"
+            >
+                Tecnologías que utilizo
+            </p>
+            <div
+                class="flex flex-wrap justify-center items-center gap-6 sm:gap-8 lg:gap-12"
+            >
+                <!-- Android -->
+                <div
+                    class="group flex flex-col items-center space-y-2 transition-transform hover:scale-110"
+                >
+                    <div
+                        class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center bg-white dark:bg-gray-800 rounded-xl shadow-md group-hover:shadow-lg transition-all border border-gray-100 dark:border-gray-700"
+                    >
+                        <svg
+                            class="w-7 h-7 sm:w-8 sm:h-8"
+                            viewBox="0 0 24 24"
+                            fill={`#${siAndroid.hex}`}
+                        >
+                            <path d={siAndroid.path}></path>
+                        </svg>
+                    </div>
+                    <span
+                        class="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300"
+                        >{siAndroid.title}</span
+                    >
+                </div>
+
+                <!-- Kotlin -->
+                <div
+                    class="group flex flex-col items-center space-y-2 transition-transform hover:scale-110"
+                >
+                    <div
+                        class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center bg-white dark:bg-gray-800 rounded-xl shadow-md group-hover:shadow-lg transition-all border border-gray-100 dark:border-gray-700"
+                    >
+                        <svg
+                            class="w-7 h-7 sm:w-8 sm:h-8"
+                            viewBox="0 0 24 24"
+                            fill={`#${siKotlin.hex}`}
+                        >
+                            <path d={siKotlin.path}></path>
+                        </svg>
+                    </div>
+                    <span
+                        class="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300"
+                        >{siKotlin.title}</span
+                    >
+                </div>
+
+                <!-- React -->
+                <div
+                    class="group flex flex-col items-center space-y-2 transition-transform hover:scale-110"
+                >
+                    <div
+                        class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center bg-white dark:bg-gray-800 rounded-xl shadow-md group-hover:shadow-lg transition-all border border-gray-100 dark:border-gray-700"
+                    >
+                        <svg
+                            class="w-7 h-7 sm:w-8 sm:h-8"
+                            viewBox="0 0 24 24"
+                            fill={`#${siReact.hex}`}
+                        >
+                            <path d={siReact.path}></path>
+                        </svg>
+                    </div>
+                    <span
+                        class="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300"
+                        >{siReact.title}</span
+                    >
+                </div>
+
+                <!-- Astro -->
+                <div
+                    class="group flex flex-col items-center space-y-2 transition-transform hover:scale-110"
+                >
+                    <div
+                        class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center bg-white dark:bg-gray-800 rounded-xl shadow-md group-hover:shadow-lg transition-all border border-gray-100 dark:border-gray-700"
+                    >
+                        <svg
+                            class="w-7 h-7 sm:w-8 sm:h-8"
+                            viewBox="0 0 24 24"
+                            fill={`#${siAstro.hex}`}
+                        >
+                            <path d={siAstro.path}></path>
+                        </svg>
+                    </div>
+                    <span
+                        class="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300"
+                        >{siAstro.title}</span
+                    >
+                </div>
+
+                <!-- TypeScript -->
+                <div
+                    class="group flex flex-col items-center space-y-2 transition-transform hover:scale-110"
+                >
+                    <div
+                        class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center bg-white dark:bg-gray-800 rounded-xl shadow-md group-hover:shadow-lg transition-all border border-gray-100 dark:border-gray-700"
+                    >
+                        <svg
+                            class="w-7 h-7 sm:w-8 sm:h-8"
+                            viewBox="0 0 24 24"
+                            fill={`#${siTypescript.hex}`}
+                        >
+                            <path d={siTypescript.path}></path>
+                        </svg>
+                    </div>
+                    <span
+                        class="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300"
+                        >{siTypescript.title}</span
+                    >
+                </div>
+
+                <!-- Tailwind -->
+                <div
+                    class="group flex flex-col items-center space-y-2 transition-transform hover:scale-110"
+                >
+                    <div
+                        class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center bg-white dark:bg-gray-800 rounded-xl shadow-md group-hover:shadow-lg transition-all border border-gray-100 dark:border-gray-700"
+                    >
+                        <svg
+                            class="w-7 h-7 sm:w-8 sm:h-8"
+                            viewBox="0 0 24 24"
+                            fill={`#${siTailwindcss.hex}`}
+                        >
+                            <path d={siTailwindcss.path}></path>
+                        </svg>
+                    </div>
+                    <span
+                        class="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300"
+                        >{siTailwindcss.title}</span
+                    >
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Decoracion -->
-    <div class="absolute bottom-6 animate-bounce">
-        <a href="#about" class="text-gray-500 dark:text-gray-400" aria-label="Siguiente sección"> ↓ </a>
+    <!-- Scroll indicator -->
+    <div
+        class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
+    >
+        <svg
+            class="w-6 h-6 text-gray-400 dark:text-gray-600"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
     </div>
 </section>
+
+<style>
+    @keyframes float {
+        0%,
+        100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-20px);
+        }
+    }
+
+    .animate-float {
+        animation: float 3s ease-in-out infinite;
+    }
+</style>

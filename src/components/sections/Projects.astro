@@ -1,0 +1,379 @@
+---
+// Projects.astro
+import { Globe, Smartphone } from "lucide-astro";
+
+// Proyectos Web - Vista de Browser
+const webProjects = [
+    {
+        id: 1,
+        title: "E-Commerce Platform",
+        description: "Modern shopping experience with real-time inventory",
+        technologies: ["React", "Next.js", "Tailwind", "Stripe"],
+        image: "/placeholder.svg?height=400&width=600",
+        url: "https://example.com",
+        github: "https://github.com/example",
+        featured: true,
+    },
+    {
+        id: 2,
+        title: "Dashboard Analytics",
+        description: "Real-time data visualization and reporting tool",
+        technologies: ["TypeScript", "React", "D3.js", "Node.js"],
+        image: "/placeholder.svg?height=400&width=600",
+        url: "https://example.com",
+        github: "https://github.com/example",
+        featured: false,
+    },
+    {
+        id: 3,
+        title: "Portfolio Builder",
+        description: "Drag & drop portfolio creator for creatives",
+        technologies: ["Astro", "React", "TailwindCSS"],
+        image: "/placeholder.svg?height=400&width=600",
+        url: "https://example.com",
+        github: "https://github.com/example",
+        featured: false,
+    },
+];
+
+// Proyectos Mobile - Vista de Smartphone
+const mobileProjects = [
+    {
+        id: 1,
+        title: "Fitness Tracker",
+        description: "Track workouts and nutrition with AI recommendations",
+        technologies: ["Kotlin", "Jetpack Compose", "Room", "Firebase"],
+        image: "/placeholder.svg?height=600&width=300",
+        playStore: "https://play.google.com/store",
+        github: "https://github.com/example",
+        featured: true,
+    },
+    {
+        id: 2,
+        title: "Task Manager Pro",
+        description: "Productivity app with smart reminders",
+        technologies: ["Android", "Kotlin", "MVVM", "Coroutines"],
+        image: "/placeholder.svg?height=600&width=300",
+        playStore: "https://play.google.com/store",
+        github: "https://github.com/example",
+        featured: false,
+    },
+    {
+        id: 3,
+        title: "Weather Forecast",
+        description: "Beautiful weather app with location tracking",
+        technologies: ["Kotlin", "Retrofit", "Material 3"],
+        image: "/placeholder.svg?height=600&width=300",
+        playStore: "https://play.google.com/store",
+        github: "https://github.com/example",
+        featured: false,
+    },
+];
+---
+
+<section
+    id="projects"
+    class="min-h-screen bg-white dark:bg-gray-900 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 transition-colors duration-300"
+>
+    <div class="max-w-7xl mx-auto">
+        <header class="text-center mb-12 sm:mb-16 lg:mb-20">
+            <p
+                class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 font-medium"
+            >
+                Portfolio
+            </p>
+            <h2
+                class="text-4xl sm:text-5xl lg:text-6xl font-serif text-gray-900 dark:text-white mb-4 transition-colors"
+            >
+                Featured Projects
+            </h2>
+            <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                A collection of my web and mobile development work
+            </p>
+        </header>
+
+        <div class="mb-16 sm:mb-20 lg:mb-24">
+            <div class="flex items-center justify-center gap-3 mb-8 sm:mb-12">
+                <div
+                    class="p-2 sm:p-3 bg-blue-100 dark:bg-blue-900/30 rounded-xl"
+                >
+                    <Globe
+                        class="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 dark:text-blue-400"
+                    />
+                </div>
+                <h3
+                    class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white"
+                >
+                    Web Projects
+                </h3>
+            </div>
+
+            <div class="space-y-8 sm:space-y-12">
+                {
+                    webProjects.map((project, index) => (
+                        <article
+                            class:list={[
+                                "group relative",
+                                index % 2 === 0
+                                    ? "lg:mr-12"
+                                    : "lg:ml-12 lg:mt-12",
+                            ]}
+                        >
+                            {/* Browser Window Container */}
+                            <div class="bg-gray-100 dark:bg-gray-800 rounded-t-xl sm:rounded-t-2xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-lg hover:shadow-2xl dark:hover:shadow-2xl dark:hover:shadow-blue-500/20 transition-all duration-300">
+                                {/* Browser Header */}
+                                <div class="bg-gray-200 dark:bg-gray-700 px-3 sm:px-4 py-2 sm:py-3 flex items-center gap-2 border-b border-gray-300 dark:border-gray-600">
+                                    <div class="flex gap-1.5 sm:gap-2">
+                                        <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500" />
+                                        <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500" />
+                                        <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500" />
+                                    </div>
+                                    <div class="flex-1 mx-2 sm:mx-4">
+                                        <div class="bg-white dark:bg-gray-600 rounded px-2 sm:px-3 py-1 text-xs text-gray-500 dark:text-gray-300 flex items-center gap-2">
+                                            <svg
+                                                class="w-3 h-3 text-gray-400"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                                                />
+                                            </svg>
+                                            <span class="hidden sm:inline">
+                                                {project.url}
+                                            </span>
+                                            <span class="sm:hidden">
+                                                example.com
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Browser Content */}
+                                <div class="relative aspect-video overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+                                    <img
+                                        src={project.image}
+                                        alt={project.title}
+                                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        loading="lazy"
+                                    />
+                                    {project.featured && (
+                                        <div class="absolute top-4 right-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                                            Featured
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* Project Info */}
+                            <div class="mt-4 sm:mt-6 px-2">
+                                <h4 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                                    {project.title}
+                                </h4>
+                                <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
+                                    {project.description}
+                                </p>
+
+                                {/* Technologies */}
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    {project.technologies.map((tech) => (
+                                        <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs sm:text-sm font-medium">
+                                            {tech}
+                                        </span>
+                                    ))}
+                                </div>
+
+                                {/* Links */}
+                                <div class="flex gap-3 sm:gap-4">
+                                    <a
+                                        href={project.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="flex items-center gap-2 px-4 sm:px-6 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors text-sm sm:text-base font-medium"
+                                    >
+                                        <svg
+                                            class="w-4 h-4"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                            />
+                                        </svg>
+                                        <span class="hidden sm:inline">
+                                            Visit Site
+                                        </span>
+                                        <span class="sm:hidden">Visit</span>
+                                    </a>
+                                    <a
+                                        href={project.github}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="flex items-center gap-2 px-4 sm:px-6 py-2 border-2 border-gray-900 dark:border-white text-gray-900 dark:text-white rounded-lg hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-colors text-sm sm:text-base font-medium"
+                                    >
+                                        <svg
+                                            class="w-4 h-4"
+                                            fill="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                        </svg>
+                                        Code
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    ))
+                }
+            </div>
+        </div>
+
+        <div>
+            <div class="flex items-center justify-center gap-3 mb-8 sm:mb-12">
+                <div
+                    class="p-2 sm:p-3 bg-green-100 dark:bg-green-900/30 rounded-xl"
+                >
+                    <Smartphone class="w-5 h-5 sm:w-6 sm:h-6 text-green-600 dark:text-green-400" />
+                </div>
+                <h3
+                    class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white"
+                >
+                    Mobile Projects
+                </h3>
+            </div>
+
+            <div
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10"
+            >
+                {
+                    mobileProjects.map((project) => (
+                        <article class="group flex flex-col items-center">
+                            {/* Phone Frame */}
+                            <div class="relative">
+                                {/* Phone Container */}
+                                <div class="relative w-64 sm:w-72 bg-gray-900 dark:bg-gray-950 rounded-[2.5rem] p-3 shadow-2xl group-hover:shadow-green-500/20 dark:group-hover:shadow-green-500/40 transition-all duration-300 group-hover:scale-105">
+                                    {/* Notch */}
+                                    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-gray-900 dark:bg-gray-950 rounded-b-2xl z-10" />
+
+                                    {/* Screen */}
+                                    <div class="relative bg-white dark:bg-gray-800 rounded-[2rem] overflow-hidden aspect-[9/19.5]">
+                                        {/* Status Bar */}
+                                        <div class="absolute top-0 left-0 right-0 px-6 pt-3 pb-2 flex justify-between items-center text-xs z-10 bg-gradient-to-b from-black/20 to-transparent">
+                                            <span class="text-white font-medium">
+                                                9:41
+                                            </span>
+                                            <div class="flex gap-1 items-center">
+                                                <svg
+                                                    class="w-4 h-4 text-white"
+                                                    fill="currentColor"
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <path d="M17.5 8c0 2.5-1 4-3.5 4s-3.5-1.5-3.5-4 1-4 3.5-4 3.5 1.5 3.5 4z" />
+                                                </svg>
+                                                <svg
+                                                    class="w-4 h-4 text-white"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                                                    />
+                                                </svg>
+                                            </div>
+                                        </div>
+
+                                        {/* App Screenshot */}
+                                        <img
+                                            src={project.image}
+                                            alt={project.title}
+                                            class="w-full h-full object-cover"
+                                            loading="lazy"
+                                        />
+
+                                        {/* Featured Badge */}
+                                        {project.featured && (
+                                            <div class="absolute top-12 right-2 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg -rotate-12">
+                                                Featured
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {/* Power Button */}
+                                    <div class="absolute right-0 top-20 w-1 h-12 bg-gray-800 dark:bg-gray-700 rounded-l" />
+                                    {/* Volume Buttons */}
+                                    <div class="absolute left-0 top-16 w-1 h-8 bg-gray-800 dark:bg-gray-700 rounded-r" />
+                                    <div class="absolute left-0 top-28 w-1 h-8 bg-gray-800 dark:bg-gray-700 rounded-r" />
+                                </div>
+                            </div>
+
+                            {/* Project Info */}
+                            <div class="mt-6 text-center max-w-xs">
+                                <h4 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2">
+                                    {project.title}
+                                </h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                                    {project.description}
+                                </p>
+
+                                {/* Technologies */}
+                                <div class="flex flex-wrap justify-center gap-2 mb-4">
+                                    {project.technologies.map((tech) => (
+                                        <span class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-xs font-medium">
+                                            {tech}
+                                        </span>
+                                    ))}
+                                </div>
+
+                                {/* Links */}
+                                <div class="flex justify-center gap-3">
+                                    <a
+                                        href={project.playStore}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="flex items-center gap-2 px-4 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors text-sm font-medium"
+                                    >
+                                        <svg
+                                            class="w-4 h-4"
+                                            fill="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path d="M1.77 0l10.47 10.47-2.12 2.12L0 2.12zm10.47 13.53L1.77 24 0 22.23l10.12-10.47zM24 12L13.53 1.53 3.06 12l10.47 10.47z" />
+                                        </svg>
+                                        Play
+                                    </a>
+                                    <a
+                                        href={project.github}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="flex items-center gap-2 px-4 py-2 border-2 border-gray-900 dark:border-white text-gray-900 dark:text-white rounded-lg hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-colors text-sm font-medium"
+                                    >
+                                        <svg
+                                            class="w-4 h-4"
+                                            fill="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                        </svg>
+                                        Code
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>

@@ -6,6 +6,7 @@
       "dependencies": {
         "@tailwindcss/vite": "^4.1.13",
         "astro": "^5.13.5",
+        "lucide-astro": "^0.548.0",
         "simple-icons": "^15.16.0",
         "tailwindcss": "^4.1.13",
       },
@@ -465,6 +466,8 @@
     "longest-streak": ["longest-streak@3.1.0", "", {}, "sha512-9Ri+o0JYgehTaVBBDoMqIl8GXtbWg711O3srftcHhZ0dqnETqLaoIK0x17fUw9rFSlK/0NlsKe0Ahhyl5pXE2g=="],
 
     "lru-cache": ["lru-cache@10.4.3", "", {}, "sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ=="],
+
+    "lucide-astro": ["lucide-astro@0.548.0", "", { "peerDependencies": { "astro": ">=2.7.1" } }, "sha512-ZfYkQgGZS+MkguatE7BpqeF1v1HamiANuGNCWLaN8a2H1z+RQkSdTxzbxpRJJ+eRtotpre823gH3az6GFjp1fg=="],
 
     "magic-string": ["magic-string@0.30.18", "", { "dependencies": { "@jridgewell/sourcemap-codec": "^1.5.5" } }, "sha512-yi8swmWbO17qHhwIBNeeZxTceJMeBvWJaId6dyvTSOwTipqeHhMhOrz6513r1sOKnpvQ7zkhlG8tPrpilwTxHQ=="],
 

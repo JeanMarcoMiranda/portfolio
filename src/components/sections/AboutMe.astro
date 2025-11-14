@@ -1,224 +1,181 @@
 ---
 // AboutMe.astro
 
+// Importamos el nuevo componente de icono
+import AboutIcon from "../AboutIcon.astro"; // Ajusta la ruta si es necesario
+
 import {
-    siAndroid,
-    siKotlin,
-    siReact,
-    siAstro,
-    siTypescript,
-    siTailwindcss,
+  siAndroid,
+  siKotlin,
+  siReact,
+  siAstro,
+  siTypescript,
+  siTailwindcss,
 } from "simple-icons/icons";
 
+// --- OPTIMIZACIÓN 1: techStack ---
+// Ya no necesitamos crear un objeto nuevo.
+// Simplemente usamos los objetos importados, que ya tienen 'title', 'hex', y 'path'.
 const techStack = [
-    { icon: siAndroid, name: siAndroid.title },
-    { icon: siKotlin, name: siKotlin.title },
-    { icon: siReact, name: siReact.title },
-    { icon: siAstro, name: siAstro.title },
-    { icon: siTypescript, name: siTypescript.title },
-    { icon: siTailwindcss, name: siTailwindcss.title },
+  siAndroid,
+  siKotlin,
+  siReact,
+  siAstro,
+  siTypescript,
+  siTailwindcss,
 ];
 
+// El array 'cards' se mantiene igual
 const cards = [
-    {
-        title: "Languages",
-        description: "HTML, CSS, JavaScript\nReact Js, Next Js",
-        icon: "code",
-        highlighted: true,
-    },
-    {
-        title: "Education",
-        description: "B.Tech in Computer Science",
-        icon: "education",
-        highlighted: false,
-    },
-    {
-        title: "Projects",
-        description: "Built more than 5 projects",
-        icon: "projects",
-        highlighted: false,
-    },
+  {
+    title: "Languages",
+    description: "HTML, CSS, JavaScript\nReact Js, Next Js",
+    icon: "code",
+    highlighted: true,
+  },
+  {
+    title: "Education",
+    description: "B.Tech in Computer Science",
+    icon: "education",
+    highlighted: false,
+  },
+  {
+    title: "Projects",
+    description: "Built more than 5 projects",
+    icon: "projects",
+    highlighted: false,
+  },
 ];
 ---
 
 <section
-    id="about"
-    class="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 transition-colors duration-300"
+  id="about"
+  class="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 transition-colors duration-300"
 >
-    <div class="max-w-7xl mx-auto">
-        <!-- Header -->
-        <header class="text-center mb-12 sm:mb-16">
-            <p
-                class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 font-medium"
+  <div class="max-w-7xl mx-auto">
+    <header class="text-center mb-12 sm:mb-16">
+      <p
+        class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 font-medium"
+      >
+        Introduction
+      </p>
+      <h2
+        class="text-4xl sm:text-5xl lg:text-6xl font-serif text-gray-900 dark:text-white transition-colors"
+      >
+        About me
+      </h2>
+    </header>
+
+    <div class="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-start">
+      <div class="flex justify-center lg:justify-end order-1 lg:order-1">
+        <div class="relative w-full max-w-sm">
+          <img
+            src="https://via.placeholder.com/400x500"
+            alt="Profile"
+            class="rounded-2xl sm:rounded-3xl w-full h-auto object-cover shadow-xl dark:shadow-2xl dark:shadow-gray-900/50 transition-shadow"
+            loading="lazy"
+            width="400"
+            height="500"
+          />
+          <div
+            class="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 w-10 h-10 sm:w-12 sm:h-12 bg-blue-500 dark:bg-blue-600 rounded-full flex items-center justify-center shadow-lg transition-colors"
+            aria-label="Verified profile"
+          >
+            <svg
+              class="w-5 h-5 sm:w-6 sm:h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
             >
-                Introduction
-            </p>
-            <h2
-                class="text-4xl sm:text-5xl lg:text-6xl font-serif text-gray-900 dark:text-white transition-colors"
-            >
-                About me
-            </h2>
-        </header>
-
-        <!-- Content Grid -->
-        <div class="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-start">
-            <!-- Image Column -->
-            <div class="flex justify-center lg:justify-end order-1 lg:order-1">
-                <div class="relative w-full max-w-sm">
-                    <img
-                        src="/placeholder.svg?height=500&width=400"
-                        alt="Profile"
-                        class="rounded-2xl sm:rounded-3xl w-full h-auto object-cover shadow-xl dark:shadow-2xl dark:shadow-gray-900/50 transition-shadow"
-                        loading="lazy"
-                        width="400"
-                        height="500"
-                    />
-                    <!-- Badge -->
-                    <div
-                        class="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 w-10 h-10 sm:w-12 sm:h-12 bg-blue-500 dark:bg-blue-600 rounded-full flex items-center justify-center shadow-lg transition-colors"
-                        aria-label="Verified profile"
-                    >
-                        <svg
-                            class="w-5 h-5 sm:w-6 sm:h-6 text-white"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            aria-hidden="true"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M5 13l4 4L19 7"></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Text Content Column -->
-            <div class="space-y-6 sm:space-y-8 order-2 lg:order-2">
-                <!-- Description -->
-                <p
-                    class="text-gray-700 dark:text-gray-300 text-base sm:text-lg leading-relaxed transition-colors"
-                >
-                    I am an experienced Frontend Developer with over a decade of
-                    professional expertise in the field. Throughout my career, I
-                    have had the privilege of collaborating with prestigious
-                    organizations, contributing to their success and growth.
-                </p>
-
-                <!-- Cards Grid -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-                    {
-                        cards.map((card) => (
-                            <article
-                                class:list={[
-                                    "rounded-xl sm:rounded-2xl p-4 sm:p-6 bg-white dark:bg-gray-800 transition-all duration-300",
-                                    "hover:shadow-lg dark:hover:shadow-2xl dark:hover:shadow-gray-900/50",
-                                    card.highlighted
-                                        ? "border-2 border-gray-900 dark:border-white"
-                                        : "border border-gray-200 dark:border-gray-700",
-                                ]}
-                            >
-                                <div class="mb-3 sm:mb-4">
-                                    {card.icon === "code" && (
-                                        <svg
-                                            class="w-7 h-7 sm:w-8 sm:h-8 text-gray-900 dark:text-white transition-colors"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                            aria-hidden="true"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                                            />
-                                        </svg>
-                                    )}
-                                    {card.icon === "education" && (
-                                        <svg
-                                            class="w-7 h-7 sm:w-8 sm:h-8 text-gray-700 dark:text-gray-300 transition-colors"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                            aria-hidden="true"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M12 14l9-5-9-5-9 5 9 5z"
-                                            />
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
-                                            />
-                                        </svg>
-                                    )}
-                                    {card.icon === "projects" && (
-                                        <svg
-                                            class="w-7 h-7 sm:w-8 sm:h-8 text-gray-700 dark:text-gray-300 transition-colors"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                            aria-hidden="true"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                                            />
-                                        </svg>
-                                    )}
-                                </div>
-                                <h3 class="font-semibold text-gray-900 dark:text-white mb-2 text-sm sm:text-base transition-colors">
-                                    {card.title}
-                                </h3>
-                                <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 leading-relaxed whitespace-pre-line transition-colors">
-                                    {card.description}
-                                </p>
-                            </article>
-                        ))
-                    }
-                </div>
-
-                <!-- Tech Stack -->
-                <div class="mt-8 sm:mt-12 lg:mt-16">
-                    <h3
-                        class="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-6 sm:mb-8 text-center transition-colors"
-                    >
-                        Tecnologías que utilizo
-                    </h3>
-                    <div
-                        class="flex flex-wrap justify-center items-center gap-4 sm:gap-6 lg:gap-8 xl:gap-12"
-                    >
-                        {
-                            techStack.map((tech) => (
-                                <div class="group flex flex-col items-center space-y-2 transition-transform hover:scale-110 duration-200">
-                                    <div class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 flex items-center justify-center bg-white dark:bg-gray-800 rounded-xl shadow-md group-hover:shadow-xl dark:group-hover:shadow-2xl dark:group-hover:shadow-gray-900/50 transition-all duration-300 border border-gray-100 dark:border-gray-700">
-                                        <svg
-                                            class="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8"
-                                            viewBox="0 0 24 24"
-                                            fill={`#${tech.icon.hex}`}
-                                            aria-hidden="true"
-                                        >
-                                            <path d={tech.icon.path} />
-                                        </svg>
-                                    </div>
-                                    <span class="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors text-center">
-                                        {tech.name}
-                                    </span>
-                                </div>
-                            ))
-                        }
-                    </div>
-                </div>
-            </div>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
         </div>
+      </div>
+
+      <div class="space-y-6 sm:space-y-8 order-2 lg:order-2">
+        <p
+          class="text-gray-700 dark:text-gray-300 text-base sm:text-lg leading-relaxed transition-colors"
+        >
+          I am an experienced Frontend Developer with over a decade of
+          professional expertise in the field. Throughout my career, I
+          have had the privilege of collaborating with prestigious
+          organizations, contributing to their success and growth.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+          {
+            cards.map((card) => (
+              <article
+                class:list={[
+                  "rounded-xl sm:rounded-2xl p-4 sm:p-6 bg-white dark:bg-gray-800 transition-all duration-300",
+                  "hover:shadow-lg dark:hover:shadow-2xl dark:hover:shadow-gray-900/50",
+                  card.highlighted
+                    ? "border-2 border-gray-900 dark:border-white"
+                    : "border border-gray-200 dark:border-gray-700",
+                ]}
+              >
+                <div class="mb-3 sm:mb-4">
+                  {/* --- OPTIMIZACIÓN 3: Componente de Icono --- */}
+                  {/*
+                    ¡Mucho más limpio!
+                    Solo pasamos el 'icon' y las clases que necesita.
+                  */}
+                  <AboutIcon
+                    icon={card.icon}
+                    class="w-7 h-7 sm:w-8 sm:h-8"
+                  />
+                </div>
+                <h3 class="font-semibold text-gray-900 dark:text-white mb-2 text-sm sm:text-base transition-colors">
+                  {card.title}
+                </h3>
+                <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 leading-relaxed whitespace-pre-line transition-colors">
+                  {card.description}
+                </p>
+              </article>
+            ))
+          }
+        </div>
+
+        <div class="mt-8 sm:mt-12 lg:mt-16">
+          <h3
+            class="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-6 sm:mb-8 text-center transition-colors"
+          >
+            Tecnologías que utilizo
+          </h3>
+          <div
+            class="flex flex-wrap justify-center items-center gap-4 sm:gap-6 lg:gap-8 xl:gap-12"
+          >
+            {
+              /* --- OPTIMIZACIÓN 1 (Continuación) --- */
+              techStack.map((tech) => (
+                <div class="group flex flex-col items-center space-y-2 transition-transform hover:scale-110 duration-200">
+                  <div class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 flex items-center justify-center bg-white dark:bg-gray-800 rounded-xl shadow-md group-hover:shadow-xl dark:group-hover:shadow-2xl dark:group-hover:shadow-gray-900/50 transition-all duration-300 border border-gray-100 dark:border-gray-700">
+                    <svg
+                      class="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8"
+                      viewBox="0 0 24 24"
+                      fill={`#${tech.hex}`} // Usamos 'tech.hex' directamente
+                      aria-hidden="true"
+                    >
+                      {/* Usamos 'tech.path' directamente */}
+                      <path d={tech.path} />
+                    </svg>
+                  </div>
+                  <span class="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors text-center">
+                    {/* Usamos 'tech.title' directamente */}
+                    {tech.title}
+                  </span>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </section>

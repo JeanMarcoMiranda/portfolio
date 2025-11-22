@@ -10,6 +10,7 @@ export const projects = [
     // Usaremos placeholders anchos para web
     imageUrl: "https://via.placeholder.com/500x300.png?text=Proyecto+Web", 
     tags: ["Next.js", "Tailwind CSS", "Vercel"],
+    link: ""
   },
   {
     id: "web-2",
@@ -18,6 +19,7 @@ export const projects = [
     description: "Plataforma completa de e-commerce con carrito de compras, pagos y panel de administración.",
     imageUrl: "https://via.placeholder.com/500x300.png?text=Proyecto+Web",
     tags: ["React", "Node.js", "Stripe", "MongoDB"],
+    link: ""
   },
   
   // --- Proyectos Móviles ---
@@ -29,6 +31,7 @@ export const projects = [
     // Usaremos placeholders altos para móvil
     imageUrl: "https://via.placeholder.com/300x500.png?text=Proyecto+M%F3vil", 
     tags: ["Kotlin", "Android Studio", "Firebase"],
+    link: ""
   },
   {
     id: "mobile-2",
@@ -37,6 +40,7 @@ export const projects = [
     description: "Clon de una red social popular, enfocado en la subida de fotos y videos.",
     imageUrl: "https://via.placeholder.com/300x500.png?text=Proyecto+M%F3vil",
     tags: ["React Native", "Firebase", "Expo"],
+    link: ""
   },
   // ... añade más proyectos aquí
 ];

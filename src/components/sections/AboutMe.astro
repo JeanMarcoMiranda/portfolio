@@ -1,170 +1,181 @@
 ---
-// AboutMe.astro
+// AboutMe.astro - Código Optimizado
 import AboutIcon from "../ui/AboutIcon.astro";
 import {
-  siAndroid,
-  siKotlin,
-  siReact,
-  siAstro,
-  siTypescript,
-  siTailwindcss,
+    siAndroid,
+    siKotlin,
+    siReact,
+    siAstro,
+    siTypescript,
+    siTailwindcss,
 } from "simple-icons/icons";
 
 const techStack = [
-  siAndroid,
-  siKotlin,
-  siReact,
-  siAstro,
-  siTypescript,
-  siTailwindcss,
+    siAndroid,
+    siKotlin,
+    siReact,
+    siAstro,
+    siTypescript,
+    siTailwindcss,
 ];
 
+// Se simplifica la descripción para asegurar que encaje bien en la tarjeta.
 const cards: {
-  title: string;
-  description: string;
-  icon: "code" | "education" | "projects";
-  highlighted: boolean;
+    title: string;
+    description: string;
+    icon: "code" | "education" | "projects";
+    highlighted: boolean;
 }[] = [
-  {
-    title: "Languages",
-    description: "HTML, CSS, JavaScript\nReact Js, Next Js",
-    icon: "code",
-    highlighted: true,
-  },
-  {
-    title: "Education",
-    description: "B.Tech in Computer Science",
-    icon: "education",
-    highlighted: false,
-  },
-  {
-    title: "Projects",
-    description: "Built more than 5 projects",
-    icon: "projects",
-    highlighted: false,
-  },
+    {
+        title: "Especialización",
+        description: "Desarrollo Frontend, Aplicaciones Nativas",
+        icon: "code",
+        highlighted: true, // Se mantiene el highlight para esta tarjeta
+    },
+    {
+        title: "Educación",
+        description: "B.Tech en Ciencias de la Computación",
+        icon: "education",
+        highlighted: false,
+    },
+    {
+        title: "Proyectos",
+        description: "Más de 5 proyectos relevantes construidos",
+        icon: "projects",
+        highlighted: false,
+    },
 ];
 ---
 
 <section id="about" class="section bg-background overflow-hidden">
-  <div class="container">
-    <header class="text-center mb-16 sm:mb-20 lg:mb-24 animate-slide-up">
-      <p
-        class="text-sm font-semibold text-primary uppercase tracking-widest mb-3"
-      >
-        Introduction
-      </p>
-      <h2 class="text-4xl sm:text-5xl font-bold text-foreground">About me</h2>
-    </header>
-
-    <div class="grid lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-16 items-start">
-      <div class="lg:col-span-5 order-1 lg:order-1 animate-fade-in">
-        <div class="relative w-full max-w-md mx-auto lg:ml-auto group">
-          <div
-            class="aspect-[4/5] relative rounded-2xl overflow-hidden shadow-strong"
-          >
-            <img
-              src="/public/profile_photo.jpg"
-              alt="Profile"
-              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              loading="lazy"
-            />
-            <div
-              class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+    <div class="container">
+        <header class="text-center mb-16 lg:mb-20 animate-slide-up">
+            <p
+                class="text-sm font-semibold text-primary uppercase tracking-widest mb-3"
             >
-            </div>
-          </div>
+                Un vistazo a mi trayectoria
+            </p>
+            <h2 class="text-4xl sm:text-5xl font-bold text-foreground">Sobre mí</h2>
+        </header>
 
-          <div
-            class="absolute -bottom-6 -right-6 w-16 h-16 bg-card border border-border rounded-full flex items-center justify-center shadow-lg z-10 animate-bounce"
-            style="animation-duration: 3s;"
-          >
-            <div
-              class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-primary-foreground"
-            >
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                stroke-width="3"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M5 13l4 4L19 7"></path>
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
+        <div class="grid lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-16 items-start">
+            
+            <div class="lg:col-span-5 order-1 lg:order-1 animate-fade-in pt-4">
+                <div class="relative w-full max-w-sm mx-auto lg:ml-auto lg:mr-0 group">
+                    <div
+                        class="aspect-[4/5] relative rounded-2xl overflow-hidden shadow-2xl border-2 border-border/50"
+                    >
+                        <img
+                            src="/public/profile_photo.jpg"
+                            alt="Jean Marco Miranda profile"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            loading="lazy"
+                        />
+                        <div
+                            class="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-10 transition-opacity duration-500"
+                        >
+                        </div>
+                    </div>
 
-      <div class="lg:col-span-7 space-y-8 sm:space-y-10 order-2 lg:order-2">
-        <p
-          class="text-lg sm:text-xl text-muted-foreground leading-relaxed font-light"
-        >
-          I am an experienced <strong class="text-foreground font-medium"
-            >Frontend Developer</strong
-          > with over a decade of professional expertise in the field. Throughout
-          my career, I have had the privilege of collaborating with prestigious organizations,
-          contributing to their success and growth.
-        </p>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
-          {
-            cards.map((card) => (
-              <article
-                class:list={[
-                  "rounded-xl p-6 border transition-all duration-300 hover:-translate-y-1",
-                  "bg-card text-card-foreground shadow-soft hover:shadow-medium",
-                  card.highlighted
-                    ? "border-primary/50 ring-1 ring-primary/20"
-                    : "border-border hover:border-primary/30",
-                ]}
-              >
-                <div class="mb-4 text-primary">
-                  <AboutIcon icon={card.icon} class="w-8 h-8" />
+                    <div
+                        class="absolute -bottom-6 -right-6 w-16 h-16 bg-background border-4 border-primary/50 rounded-full flex items-center justify-center shadow-lg z-10 animate-bounce"
+                        style="animation-duration: 3s;"
+                    >
+                        <div
+                            class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-primary-foreground"
+                        >
+                            <svg
+                                class="w-5 h-5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                stroke-width="2"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                    </div>
                 </div>
-                <h3 class="font-bold text-foreground mb-2 text-lg">
-                  {card.title}
-                </h3>
-                <p class="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">
-                  {card.description}
+            </div>
+
+            <div class="lg:col-span-7 space-y-8 order-2 lg:order-2">
+                
+                <p
+                    class="text-xl text-muted-foreground leading-relaxed font-light"
+                >
+                    Soy un **Desarrollador Frontend** con experiencia, enfocado en crear soluciones
+                    digitales de alto rendimiento. Mi enfoque combina la arquitectura moderna en el lado del cliente con
+                    la pasión por el **diseño y la experiencia de usuario (UX)**.
                 </p>
-              </article>
-            ))
-          }
-        </div>
+                <p
+                    class="text-lg text-muted-foreground leading-relaxed font-light"
+                >
+                    He colaborado en diversos proyectos, desde aplicaciones móviles nativas 
+                    hasta sistemas web escalables, siempre buscando la eficiencia y el código limpio.
+                    <strong class="text-primary font-medium">Mi objetivo es transformar ideas complejas en interfaces intuitivas y rápidas.</strong>
+                </p>
 
-        <div class="pt-8 border-t border-border">
-          <h3
-            class="text-sm font-semibold text-muted-foreground uppercase tracking-widest mb-6"
-          >
-            Tecnologías que utilizo
-          </h3>
-
-          <div class="flex flex-wrap gap-4">
-            {
-              techStack.map((tech) => (
-                <div class="group relative flex items-center justify-center p-4 bg-card border border-border rounded-xl shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300 hover:-translate-y-1">
-                  <svg
-                    class="w-8 h-8 transition-transform duration-300 group-hover:scale-110"
-                    viewBox="0 0 24 24"
-                    fill={`#${tech.hex}`}
-                    aria-hidden="true"
-                  >
-                    <path d={tech.path} />
-                  </svg>
-
-                  <span class="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-foreground text-background text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none">
-                    {tech.title}
-                  </span>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 pt-4">
+                    {
+                        cards.map((card) => (
+                            <article
+                                class:list={[
+                                    "rounded-xl p-6 border transition-all duration-300 hover:shadow-xl relative",
+                                    card.highlighted
+                                        ? "border-primary bg-primary/5 text-primary" // Resaltado con Primary
+                                        : "border-border bg-card hover:border-accent/50", // Base con hover de Accent
+                                ]}
+                            >
+                                {card.highlighted && (
+                                    <div class="absolute inset-0 opacity-[0.1]" style="background-image: radial-gradient(var(--color-primary) 1px, transparent 1px); background-size: 10px 10px; z-index: 0;"></div>
+                                )}
+                                
+                                <div class="mb-4 text-primary relative z-10">
+                                    <AboutIcon icon={card.icon} class="w-8 h-8 text-primary" />
+                                </div>
+                                <h3 class="font-extrabold text-foreground mb-1 text-xl relative z-10">
+                                    {card.title}
+                                </h3>
+                                <p class="text-sm text-muted-foreground leading-snug whitespace-pre-line relative z-10">
+                                    {card.description}
+                                </p>
+                            </article>
+                        ))
+                    }
                 </div>
-              ))
-            }
-          </div>
+
+                <div class="pt-8 mt-8 border-t border-border">
+                    <h3
+                        class="text-lg font-semibold text-foreground uppercase tracking-wider mb-6"
+                    >
+                        Tecnologías que utilizo
+                    </h3>
+
+                    <div class="flex flex-wrap gap-4">
+                        {
+                            techStack.map((tech) => (
+                                <div class="group relative flex items-center justify-center w-14 h-14 p-2 bg-card border border-border rounded-lg shadow-md hover:shadow-xl hover:border-primary transition-all duration-300 transform hover:scale-105">
+                                    <svg
+                                        class="w-8 h-8 transition-transform duration-300 group-hover:scale-110"
+                                        viewBox="0 0 24 24"
+                                        fill={`#${tech.hex}`}
+                                        aria-hidden="true"
+                                    >
+                                        <path d={tech.path} />
+                                    </svg>
+
+                                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1 bg-foreground text-background text-sm font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none shadow-md">
+                                        {tech.title}
+                                    </span>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>

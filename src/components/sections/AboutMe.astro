@@ -1,8 +1,7 @@
 ---
-// AboutMe.astro
+// AboutMe.astro - Versión Optimizada
 
-// Importamos el nuevo componente de icono
-import AboutIcon from "../AboutIcon.astro"; // Ajusta la ruta si es necesario
+import AboutIcon from "../ui/AboutIcon.astro";
 
 import {
   siAndroid,
@@ -13,9 +12,6 @@ import {
   siTailwindcss,
 } from "simple-icons/icons";
 
-// --- OPTIMIZACIÓN 1: techStack ---
-// Ya no necesitamos crear un objeto nuevo.
-// Simplemente usamos los objetos importados, que ya tienen 'title', 'hex', y 'path'.
 const techStack = [
   siAndroid,
   siKotlin,
@@ -25,7 +21,6 @@ const techStack = [
   siTailwindcss,
 ];
 
-// El array 'cards' se mantiene igual
 const cards = [
   {
     title: "Languages",
@@ -50,39 +45,47 @@ const cards = [
 
 <section
   id="about"
-  class="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 transition-colors duration-300"
+  class="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 py-20 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 transition-colors duration-300"
 >
   <div class="max-w-7xl mx-auto">
-    <header class="text-center mb-12 sm:mb-16">
+    <!-- Header Section - Más espacio y mejor jerarquía -->
+    <header class="text-center mb-16 sm:mb-20 lg:mb-24">
       <p
-        class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 font-medium"
+        class="text-sm sm:text-base text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-3 font-semibold"
       >
         Introduction
       </p>
       <h2
-        class="text-4xl sm:text-5xl lg:text-6xl font-serif text-gray-900 dark:text-white transition-colors"
+        class="text-5xl sm:text-6xl lg:text-7xl font-serif text-gray-900 dark:text-white transition-colors leading-tight"
       >
         About me
       </h2>
     </header>
 
-    <div class="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-start">
-      <div class="flex justify-center lg:justify-end order-1 lg:order-1">
-        <div class="relative w-full max-w-sm">
-          <img
-            src="https://via.placeholder.com/400x500"
-            alt="Profile"
-            class="rounded-2xl sm:rounded-3xl w-full h-auto object-cover shadow-xl dark:shadow-2xl dark:shadow-gray-900/50 transition-shadow"
-            loading="lazy"
-            width="400"
-            height="500"
-          />
+    <!-- Main Content Grid - Mejor balance entre columnas -->
+    <div class="grid lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-16 items-start">
+      
+      <!-- Image Column - 5 columnas en desktop -->
+      <div class="lg:col-span-5 flex justify-center lg:justify-end order-1">
+        <div class="relative w-full max-w-md lg:max-w-lg">
+          <div class="aspect-[4/5] relative">
+            <img
+              src="/public/profile_photo.jpg"
+              alt="Profile"
+              class="rounded-2xl sm:rounded-3xl w-full h-full object-cover shadow-2xl dark:shadow-3xl dark:shadow-gray-900/60 transition-all hover:shadow-3xl"
+              loading="lazy"
+              width="400"
+              height="500"
+            />
+          </div>
+          
+          <!-- Badge - Mejor posicionamiento y tamaño -->
           <div
-            class="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 w-10 h-10 sm:w-12 sm:h-12 bg-blue-500 dark:bg-blue-600 rounded-full flex items-center justify-center shadow-lg transition-colors"
+            class="absolute -top-4 -right-4 sm:-top-5 sm:-right-5 w-14 h-14 sm:w-16 sm:h-16 bg-blue-500 dark:bg-blue-600 rounded-full flex items-center justify-center shadow-xl transition-all hover:scale-110 duration-300"
             aria-label="Verified profile"
           >
             <svg
-              class="w-5 h-5 sm:w-6 sm:h-6 text-white"
+              class="w-7 h-7 sm:w-8 sm:h-8 text-white"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -91,16 +94,20 @@ const cards = [
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                stroke-width="2"
-                d="M5 13l4 4L19 7"></path>
+                stroke-width="2.5"
+                d="M5 13l4 4L19 7"
+              ></path>
             </svg>
           </div>
         </div>
       </div>
 
-      <div class="space-y-6 sm:space-y-8 order-2 lg:order-2">
+      <!-- Content Column - 7 columnas en desktop -->
+      <div class="lg:col-span-7 space-y-8 sm:space-y-10 lg:space-y-12 order-2">
+        
+        <!-- Description - Mejor tipografía -->
         <p
-          class="text-gray-700 dark:text-gray-300 text-base sm:text-lg leading-relaxed transition-colors"
+          class="text-gray-600 dark:text-gray-300 text-lg sm:text-xl lg:text-2xl leading-relaxed sm:leading-relaxed lg:leading-relaxed transition-colors font-light"
         >
           I am an experienced Frontend Developer with over a decade of
           professional expertise in the field. Throughout my career, I
@@ -108,33 +115,29 @@ const cards = [
           organizations, contributing to their success and growth.
         </p>
 
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+        <!-- Cards Grid - Optimizado con mejor espaciado -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 pt-4">
           {
             cards.map((card) => (
               <article
                 class:list={[
-                  "rounded-xl sm:rounded-2xl p-4 sm:p-6 bg-white dark:bg-gray-800 transition-all duration-300",
-                  "hover:shadow-lg dark:hover:shadow-2xl dark:hover:shadow-gray-900/50",
+                  "rounded-2xl p-6 sm:p-7 lg:p-8 bg-white dark:bg-gray-800 transition-all duration-300 hover:-translate-y-1",
+                  "hover:shadow-xl dark:hover:shadow-2xl dark:hover:shadow-gray-900/50",
                   card.highlighted
-                    ? "border-2 border-gray-900 dark:border-white"
-                    : "border border-gray-200 dark:border-gray-700",
+                    ? "border-2 border-gray-900 dark:border-white ring-2 ring-gray-900/5 dark:ring-white/5"
+                    : "border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600",
                 ]}
               >
-                <div class="mb-3 sm:mb-4">
-                  {/* --- OPTIMIZACIÓN 3: Componente de Icono --- */}
-                  {/*
-                    ¡Mucho más limpio!
-                    Solo pasamos el 'icon' y las clases que necesita.
-                  */}
+                <div class="mb-4 sm:mb-5">
                   <AboutIcon
                     icon={card.icon}
-                    class="w-7 h-7 sm:w-8 sm:h-8"
+                    class="w-9 h-9 sm:w-10 sm:h-10 lg:w-11 lg:h-11"
                   />
                 </div>
-                <h3 class="font-semibold text-gray-900 dark:text-white mb-2 text-sm sm:text-base transition-colors">
+                <h3 class="font-bold text-gray-900 dark:text-white mb-2.5 text-base sm:text-lg transition-colors">
                   {card.title}
                 </h3>
-                <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 leading-relaxed whitespace-pre-line transition-colors">
+                <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed whitespace-pre-line transition-colors">
                   {card.description}
                 </p>
               </article>
@@ -142,32 +145,32 @@ const cards = [
           }
         </div>
 
-        <div class="mt-8 sm:mt-12 lg:mt-16">
+        <!-- Tech Stack Section - Mejor separación y organización -->
+        <div class="pt-8 sm:pt-10 lg:pt-12 border-t border-gray-200 dark:border-gray-700">
           <h3
-            class="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-6 sm:mb-8 text-center transition-colors"
+            class="text-sm sm:text-base font-semibold text-gray-900 dark:text-white uppercase tracking-widest mb-8 sm:mb-10 text-center transition-colors"
           >
             Tecnologías que utilizo
           </h3>
+          
+          <!-- Tech Icons Grid - Mejor distribución -->
           <div
-            class="flex flex-wrap justify-center items-center gap-4 sm:gap-6 lg:gap-8 xl:gap-12"
+            class="grid grid-cols-3 sm:grid-cols-6 gap-6 sm:gap-8 lg:gap-10"
           >
             {
-              /* --- OPTIMIZACIÓN 1 (Continuación) --- */
               techStack.map((tech) => (
-                <div class="group flex flex-col items-center space-y-2 transition-transform hover:scale-110 duration-200">
-                  <div class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 flex items-center justify-center bg-white dark:bg-gray-800 rounded-xl shadow-md group-hover:shadow-xl dark:group-hover:shadow-2xl dark:group-hover:shadow-gray-900/50 transition-all duration-300 border border-gray-100 dark:border-gray-700">
+                <div class="group flex flex-col items-center space-y-3 transition-transform hover:scale-110 duration-300">
+                  <div class="w-16 h-16 sm:w-18 sm:h-18 lg:w-20 lg:h-20 flex items-center justify-center bg-white dark:bg-gray-800 rounded-2xl shadow-lg group-hover:shadow-2xl dark:group-hover:shadow-2xl dark:group-hover:shadow-gray-900/50 transition-all duration-300 border border-gray-100 dark:border-gray-700 group-hover:border-gray-200 dark:group-hover:border-gray-600">
                     <svg
-                      class="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8"
+                      class="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 transition-transform group-hover:scale-110 duration-300"
                       viewBox="0 0 24 24"
-                      fill={`#${tech.hex}`} // Usamos 'tech.hex' directamente
+                      fill={`#${tech.hex}`}
                       aria-hidden="true"
                     >
-                      {/* Usamos 'tech.path' directamente */}
                       <path d={tech.path} />
                     </svg>
                   </div>
-                  <span class="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors text-center">
-                    {/* Usamos 'tech.title' directamente */}
+                  <span class="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     {tech.title}
                   </span>
                 </div>
@@ -175,6 +178,7 @@ const cards = [
             }
           </div>
         </div>
+
       </div>
     </div>
   </div>

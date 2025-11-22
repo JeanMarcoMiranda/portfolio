@@ -1,28 +1,17 @@
 ---
 // src/components/AboutIcon.astro
-// Este componente recibe el nombre de un icono y renderiza el SVG correspondiente.
 
 interface Props {
-  icon: string; // "code", "education", o "projects"
-  class?: string; // Para pasar clases de Tailwind
+  icon: 'code' | 'education' | 'projects';
+  class?: string;
 }
 
 const { icon, class: className } = Astro.props;
 ---
 
-{
-  /*
-    Usamos un bloque de renderizado condicional para mostrar el SVG
-    correcto basado en la 'prop' de 'icon'.
-    Pasamos 'className' para que podamos estilizar el SVG desde fuera.
-  */
-}
 {icon === "code" && (
   <svg
-    class:list={[
-      className,
-      "text-gray-900 dark:text-white transition-colors", // Clase específica del icono "code"
-    ]}
+    class:list={[className, "transition-colors"]}
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
@@ -39,16 +28,18 @@ const { icon, class: className } = Astro.props;
 
 {icon === "education" && (
   <svg
-    class:list={[
-      className,
-      "text-gray-700 dark:text-gray-300 transition-colors", // Clases de los otros iconos
-    ]}
+    class:list={[className, "transition-colors"]}
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
     aria-hidden="true"
   >
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
+    <path 
+      stroke-linecap="round" 
+      stroke-linejoin="round" 
+      stroke-width="2" 
+      d="M12 14l9-5-9-5-9 5 9 5z" 
+    />
     <path
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -60,10 +51,7 @@ const { icon, class: className } = Astro.props;
 
 {icon === "projects" && (
   <svg
-    class:list={[
-      className,
-      "text-gray-700 dark:text-gray-300 transition-colors",
-    ]}
+    class:list={[className, "transition-colors"]}
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"

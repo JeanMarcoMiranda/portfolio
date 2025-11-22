@@ -1,81 +1,88 @@
 ---
 // src/components/Projects.astro
-
-// 1. Importamos los datos
 import { projects } from "../../data/projects.js";
 
-// 2. Filtramos los proyectos en el servidor.
-//    Esto es muy eficiente, el cliente no tiene que hacer este trabajo.
+// Filtramos los datos
 const webProjects = projects.filter((p) => p.type === "web");
 const mobileProjects = projects.filter((p) => p.type === "mobile");
 
-// 3. Clases de Tailwind para los botones
-//    Las definimos aquí para mantener el script limpio
-const activeClasses = "bg-blue-600 text-white shadow-lg";
-const inactiveClasses = "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300";
+// DEFINICIÓN DE ESTILOS (Tokens del sistema de diseño)
+// Active: Color primario, texto blanco, sombra suave
+const activeClasses = "bg-primary text-primary-foreground shadow-md scale-105";
+// Inactive: Fondo 'muted' (gris suave), texto suave, borde sutil
+const inactiveClasses = "bg-muted text-muted-foreground border border-transparent hover:border-border hover:text-foreground";
 ---
 
-<section
-  id="projects"
-  class="min-h-screen bg-gray-50 dark:bg-gray-800 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 transition-colors duration-300"
->
-  <div class="max-w-7xl mx-auto">
-    <header class="text-center mb-12 sm:mb-16">
-      <p
-        class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 font-medium"
-      >
+<section id="projects" class="section bg-background relative overflow-hidden">
+  <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[600px] h-[600px] bg-accent/5 blur-[100px] rounded-full pointer-events-none"></div>
+
+  <div class="container relative z-10">
+    
+    <header class="text-center mb-12 sm:mb-16 animate-slide-up">
+      <p class="text-sm font-semibold text-primary uppercase tracking-widest mb-2">
         Portafolio
       </p>
-      <h2
-        class="text-4xl sm:text-5xl lg:text-6xl font-serif text-gray-900 dark:text-white transition-colors"
-      >
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">
         Mis Proyectos
       </h2>
     </header>
 
     <div
       id="project-switcher"
-      class="flex justify-center items-center space-x-4 mb-10 sm:mb-12"
+      class="flex justify-center items-center gap-4 mb-12 animate-fade-in"
     >
       <button
         data-tab="web"
-        class={`px-6 py-2 rounded-full text-sm sm:text-base font-medium transition-all duration-300 ${activeClasses}`}
+        class={`px-6 py-2.5 rounded-full text-sm sm:text-base font-medium transition-all duration-300 cursor-pointer ${activeClasses}`}
+        aria-label="Ver proyectos web"
       >
         🖥️ Proyectos Web
       </button>
       <button
         data-tab="mobile"
-        class={`px-6 py-2 rounded-full text-sm sm:text-base font-medium transition-all duration-300 ${inactiveClasses}`}
+        class={`px-6 py-2.5 rounded-full text-sm sm:text-base font-medium transition-all duration-300 cursor-pointer ${inactiveClasses}`}
+        aria-label="Ver proyectos móviles"
       >
         📱 Proyectos Móviles
       </button>
     </div>
 
-    <div>
+    <div class="min-h-[400px]">
+      
       <div
         id="web-panel"
         data-panel="web"
-        class="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10"
+        class="grid grid-cols-1 md:grid-cols-2 gap-8 animate-slide-up"
       >
         {
           webProjects.map((project) => (
-            <article class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden group transition-all duration-300 hover:shadow-2xl">
-              <img
-                src={project.imageUrl}
-                alt={project.title}
-                loading="lazy"
-                class="w-full h-56 object-cover"
-              />
+            <article class="group relative bg-card border border-border rounded-2xl overflow-hidden shadow-soft hover:shadow-medium transition-all duration-300 hover:-translate-y-1 hover:border-primary/30">
+              
+              <div class="relative h-56 overflow-hidden bg-muted">
+                <img
+                  src={project.imageUrl}
+                  alt={project.title}
+                  loading="lazy"
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
+
               <div class="p-6">
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                  {project.title}
-                </h3>
-                <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">
+                <div class="flex justify-between items-start mb-3">
+                   <h3 class="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                    {project.title}
+                  </h3>
+                  <svg class="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                </div>
+               
+                <p class="text-muted-foreground mb-5 text-sm leading-relaxed line-clamp-3">
                   {project.description}
                 </p>
-                <div class="flex flex-wrap gap-2">
+                
+                <div class="flex flex-wrap gap-2 mt-auto">
                   {project.tags.map((tag) => (
-                    <span class="text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-0.5 rounded-full">
+                    <span class="text-xs font-medium bg-secondary text-secondary-foreground px-2.5 py-1 rounded-md border border-secondary-foreground/10">
                       {tag}
                     </span>
                   ))}
@@ -89,34 +96,37 @@ const inactiveClasses = "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-
       <div
         id="mobile-panel"
         data-panel="mobile"
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center gap-8 sm:gap-10 hidden"
+        class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center gap-10 animate-slide-up"
       >
         {
           mobileProjects.map((project) => (
-            <article class="flex flex-col items-center group">
-              {/* Marco del teléfono */}
-              <div class="relative w-64 h-[500px] bg-gray-900 dark:bg-gray-800 rounded-[2.5rem] border-[14px] border-gray-900 dark:border-gray-800 shadow-xl overflow-hidden group-hover:shadow-2xl transition-shadow">
-                <div class="absolute top-0 inset-x-0 h-8 bg-gray-900 dark:bg-gray-800 z-10">
-                  <div class="absolute top-2 left-1/2 -translate-x-1/2 w-32 h-4 bg-gray-950 dark:bg-gray-900 rounded-b-lg" />
+            <article class="flex flex-col items-center group w-full">
+              
+              <div class="relative w-[260px] h-[520px] bg-slate-950 rounded-[3rem] border-[12px] border-slate-900 shadow-xl overflow-hidden group-hover:shadow-2xl group-hover:shadow-primary/20 transition-all duration-300 group-hover:-translate-y-2">
+                <div class="absolute top-0 inset-x-0 h-6 bg-slate-900 z-20 flex justify-center">
+                    <div class="w-24 h-5 bg-black rounded-b-xl"></div>
                 </div>
+                
                 <img
                   src={project.imageUrl}
                   alt={project.title}
                   loading="lazy"
-                  class="w-full h-full object-cover object-top"
+                  class="w-full h-full object-cover"
                 />
+                
+                <div class="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none z-10"></div>
               </div>
-              {/* Texto debajo del teléfono */}
-              <div class="text-center mt-4 w-64">
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+
+              <div class="text-center mt-6 max-w-[260px]">
+                <h3 class="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
                   {project.title}
                 </h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1 mb-3">
+                <p class="text-sm text-muted-foreground mb-3 line-clamp-2">
                   {project.description}
                 </p>
                 <div class="flex flex-wrap justify-center gap-2">
                   {project.tags.map((tag) => (
-                    <span class="text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-0.5 rounded-full">
+                    <span class="text-xs font-medium bg-secondary text-secondary-foreground px-2 py-0.5 rounded-full">
                       {tag}
                     </span>
                   ))}
@@ -126,51 +136,54 @@ const inactiveClasses = "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-
           ))
         }
       </div>
+
     </div>
   </div>
 </section>
 
 <script define:vars={{ activeClasses, inactiveClasses }}>
-  // Seleccionamos los elementos del DOM
+  // Lógica del Switcher
   const switcher = document.getElementById("project-switcher");
   const buttons = switcher.querySelectorAll("button[data-tab]");
   const webPanel = document.getElementById("web-panel");
   const mobilePanel = document.getElementById("mobile-panel");
 
-  // Clases de estilo pasadas desde el frontmatter de Astro
-  // Usamos 'split' porque vienen como una sola cadena
+  // Convertimos las clases de string a array para usarlas en classList
   const activeStyles = activeClasses.split(" ");
   const inactiveStyles = inactiveClasses.split(" ");
 
-  // Agregamos un 'listener' al contenedor de los botones
-  switcher.addEventListener("click", (event) => {
+  switcher?.addEventListener("click", (event) => {
     const clickedButton = event.target.closest("button[data-tab]");
-
-    // Si no se hizo clic en un botón, no hacer nada
     if (!clickedButton) return;
 
-    const tabToShow = clickedButton.dataset.tab; // "web" o "mobile"
+    const tabToShow = clickedButton.dataset.tab;
 
-    // 1. Actualizar estilos de los botones
+    // 1. Actualizar Botones
     buttons.forEach((button) => {
       if (button === clickedButton) {
-        button.classList.add(...activeStyles);
         button.classList.remove(...inactiveStyles);
-        button.setAttribute("aria-pressed", "true");
+        button.classList.add(...activeStyles);
       } else {
         button.classList.remove(...activeStyles);
         button.classList.add(...inactiveStyles);
-        button.setAttribute("aria-pressed", "false");
       }
     });
 
-    // 2. Mostrar/Ocultar los paneles
+    // 2. Actualizar Paneles con animación simple
     if (tabToShow === "web") {
-      webPanel.classList.remove("hidden");
       mobilePanel.classList.add("hidden");
+      webPanel.classList.remove("hidden");
+      // Reiniciar animación
+      webPanel.style.animation = 'none';
+      webPanel.offsetHeight; /* trigger reflow */
+      webPanel.style.animation = null; 
     } else {
-      mobilePanel.classList.remove("hidden");
       webPanel.classList.add("hidden");
+      mobilePanel.classList.remove("hidden");
+      // Reiniciar animación
+      mobilePanel.style.animation = 'none';
+      mobilePanel.offsetHeight; /* trigger reflow */
+      mobilePanel.style.animation = null;
     }
   });
 </script>

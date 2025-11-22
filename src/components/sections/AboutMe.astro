@@ -19,7 +19,12 @@ const techStack = [
   siTailwindcss,
 ];
 
-const cards = [
+const cards: {
+  title: string;
+  description: string;
+  icon: "code" | "education" | "projects";
+  highlighted: boolean;
+}[] = [
   {
     title: "Languages",
     description: "HTML, CSS, JavaScript\nReact Js, Next Js",
@@ -44,58 +49,65 @@ const cards = [
 <section id="about" class="section bg-background overflow-hidden">
   <div class="container">
     <header class="text-center mb-16 sm:mb-20 lg:mb-24 animate-slide-up">
-      <p class="text-sm font-semibold text-primary uppercase tracking-widest mb-3">
+      <p
+        class="text-sm font-semibold text-primary uppercase tracking-widest mb-3"
+      >
         Introduction
       </p>
-      <h2 class="text-4xl sm:text-5xl font-bold text-foreground">
-        About me
-      </h2>
+      <h2 class="text-4xl sm:text-5xl font-bold text-foreground">About me</h2>
     </header>
 
     <div class="grid lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-16 items-start">
-      
       <div class="lg:col-span-5 order-1 lg:order-1 animate-fade-in">
         <div class="relative w-full max-w-md mx-auto lg:ml-auto group">
-          <div class="aspect-[4/5] relative rounded-2xl overflow-hidden shadow-strong">
+          <div
+            class="aspect-[4/5] relative rounded-2xl overflow-hidden shadow-strong"
+          >
             <img
               src="/public/profile_photo.jpg"
               alt="Profile"
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               loading="lazy"
             />
-            <div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div
+              class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            >
+            </div>
           </div>
-          
+
           <div
             class="absolute -bottom-6 -right-6 w-16 h-16 bg-card border border-border rounded-full flex items-center justify-center shadow-lg z-10 animate-bounce"
             style="animation-duration: 3s;"
           >
-            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-primary-foreground">
-                <svg
+            <div
+              class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-primary-foreground"
+            >
+              <svg
                 class="w-6 h-6"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
                 stroke-width="3"
-                >
+              >
                 <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M5 13l4 4L19 7"
-                ></path>
-                </svg>
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
             </div>
           </div>
         </div>
       </div>
 
       <div class="lg:col-span-7 space-y-8 sm:space-y-10 order-2 lg:order-2">
-        
-        <p class="text-lg sm:text-xl text-muted-foreground leading-relaxed font-light">
-          I am an experienced <strong class="text-foreground font-medium">Frontend Developer</strong> with over a decade of
-          professional expertise in the field. Throughout my career, I
-          have had the privilege of collaborating with prestigious
-          organizations, contributing to their success and growth.
+        <p
+          class="text-lg sm:text-xl text-muted-foreground leading-relaxed font-light"
+        >
+          I am an experienced <strong class="text-foreground font-medium"
+            >Frontend Developer</strong
+          > with over a decade of professional expertise in the field. Throughout
+          my career, I have had the privilege of collaborating with prestigious organizations,
+          contributing to their success and growth.
         </p>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
@@ -111,10 +123,7 @@ const cards = [
                 ]}
               >
                 <div class="mb-4 text-primary">
-                  <AboutIcon
-                    icon={card.icon}
-                    class="w-8 h-8"
-                  />
+                  <AboutIcon icon={card.icon} class="w-8 h-8" />
                 </div>
                 <h3 class="font-bold text-foreground mb-2 text-lg">
                   {card.title}
@@ -128,10 +137,12 @@ const cards = [
         </div>
 
         <div class="pt-8 border-t border-border">
-          <h3 class="text-sm font-semibold text-muted-foreground uppercase tracking-widest mb-6">
+          <h3
+            class="text-sm font-semibold text-muted-foreground uppercase tracking-widest mb-6"
+          >
             Tecnologías que utilizo
           </h3>
-          
+
           <div class="flex flex-wrap gap-4">
             {
               techStack.map((tech) => (
@@ -144,7 +155,7 @@ const cards = [
                   >
                     <path d={tech.path} />
                   </svg>
-                  
+
                   <span class="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-foreground text-background text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none">
                     {tech.title}
                   </span>
@@ -153,7 +164,6 @@ const cards = [
             }
           </div>
         </div>
-
       </div>
     </div>
   </div>

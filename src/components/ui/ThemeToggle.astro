@@ -1,14 +1,14 @@
 <button
+  id="theme-toggle"
   type="button"
-  id="toggle-theme"
-  class="relative p-3 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 shadow-sm hover:shadow-md transition-all duration-300 ease-in-out group"
-  aria-label="Toggle theme"
-  onclick="toggleTheme()"
+  class="group relative p-2.5 rounded-xl bg-background border border-border hover:border-primary/50 hover:bg-muted shadow-sm transition-all duration-300 active:scale-95 backdrop-blur-sm cursor-pointer"
+  aria-label="Cambiar tema"
 >
   <svg
-    class="w-5 h-5 text-amber-500 block dark:hidden transition-transform duration-300 group-hover:rotate-12"
+    class="w-5 h-5 text-accent transition-transform duration-500 group-hover:rotate-45 dark:hidden"
     fill="currentColor"
     viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
   >
     <path
       d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"
@@ -16,71 +16,56 @@
   </svg>
 
   <svg
-    class="w-5 h-5 text-slate-400 hidden dark:block transition-transform duration-300 group-hover:-rotate-12"
+    class="w-5 h-5 text-primary hidden transition-transform duration-500 group-hover:-rotate-12 dark:block"
     fill="currentColor"
     viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
   >
     <path
       fill-rule="evenodd"
       d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"
-      clip-rule="evenodd"></path>
+      clip-rule="evenodd"
+    ></path>
   </svg>
 
   <div
-    class="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+    class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-gradient-to-r from-primary to-accent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-[1px]"
   >
   </div>
 </button>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const toggleThemeButton = document.getElementById("toggle-theme");
-
-    function toggleTheme() {
-      const html = document.documentElement;
-      const isDark = html.classList.contains("dark");
-
-      if (isDark) {
-        html.classList.remove("dark");
-        localStorage.setItem("theme", "light");
-      } else {
-        html.classList.add("dark");
-        localStorage.setItem("theme", "dark");
-      }
+<script is:inline>
+  // This script runs immediately to prevent FOUC (Flash of Unstyled Content)
+  const theme = (() => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
     }
-
-    function initTheme() {
-      if (
-        localStorage.getItem("theme") === "dark" ||
-        (!localStorage.getItem("theme") &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.classList.add("dark");
-      }
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
     }
+    return "light";
+  })();
 
-    toggleThemeButton?.addEventListener("click", toggleTheme);
+  if (theme === "dark") {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
 
-    // Ejecutar initTheme al cargar la página
-    initTheme();
-  });
+  window.localStorage.setItem("theme", theme);
 </script>
 
-<style>
-  /* Estilos adicionales para animaciones más suaves */
-  #toggle-theme {
-    backdrop-filter: blur(8px);
-  }
+<script>
+  // Event Listener logic handles the toggle click
+  const handleToggleClick = () => {
+    const element = document.documentElement;
+    element.classList.toggle("dark");
 
-  #toggle-theme:active {
-    transform: scale(0.95);
-  }
+    const isDark = element.classList.contains("dark");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  };
 
-  @media (prefers-reduced-motion: reduce) {
-    #toggle-theme,
-    #toggle-theme svg,
-    #toggle-theme div {
-      transition: none !important;
-    }
-  }
-</style>
+  document
+    .getElementById("theme-toggle")
+    ?.addEventListener("click", handleToggleClick);
+</script>

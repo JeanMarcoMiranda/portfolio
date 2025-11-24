@@ -1,131 +1,183 @@
 ---
 import ThemeToggle from "../ui/ThemeToggle.astro";
+
+interface NavLink {
+  href: string;
+  label: string;
+}
+
+const navLinks: NavLink[] = [
+  { href: "#about", label: "Sobre mí" },
+  { href: "#projects", label: "Proyectos" },
+  { href: "#contact", label: "Contáctame" },
+];
 ---
 
-<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-background/80 border-b border-border/50 shadow-sm">
-    <nav class="container flex items-center justify-between py-4">
-        <a href="#hero" class="group relative">
-            <div
-                class="text-2xl font-bold tracking-tight text-foreground transition-all duration-300 group-hover:scale-105"
-            >
-                <span class="relative">
-                    JM
-                    <div
-                        class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-300 group-hover:w-full"
-                    >
-                    </div>
-                </span>
-            </div>
-        </a>
-
-        <ul class="hidden md:flex gap-8 text-muted-foreground font-medium">
-            <li>
-                <a
-                    href="#about"
-                    class="relative py-2 px-1 transition-colors duration-300 hover:text-primary group"
-                >
-                    Sobre mí
-                    <span
-                        class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"
-                    ></span>
-                </a>
-            </li>
-            <li>
-                <a
-                    href="#projects"
-                    class="relative py-2 px-1 transition-colors duration-300 hover:text-primary group"
-                >
-                    Proyectos
-                    <span
-                        class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"
-                    ></span>
-                </a>
-            </li>
-            <li>
-                <a
-                    href="#contact"
-                    class="relative py-2 px-1 transition-colors duration-300 hover:text-primary group"
-                >
-                    Contáctame
-                    <span
-                        class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"
-                    ></span>
-                </a>
-            </li>
-        </ul>
-
-        <div class="flex items-center gap-4">
-             <div class="hidden md:block">
-                <ThemeToggle />
-            </div>
-
-            <button
-                id="mobile-menu-button"
-                class="md:hidden p-2 rounded-lg bg-secondary text-secondary-foreground hover:bg-muted transition-colors"
-                aria-label="Abrir menú"
-            >
-                <svg
-                    class="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
-        </div>
-    </nav>
-
-    <div
-        id="mobile-menu"
-        class="hidden md:hidden bg-background/95 backdrop-blur-md border-t border-border"
+<header
+  class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-background/80 border-b border-border/50 shadow-sm"
+>
+  <nav class="container flex items-center justify-between py-4">
+    <!-- Logo -->
+    <a
+      href="#hero"
+      class="group relative outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md"
+      aria-label="Ir al inicio"
     >
-        <div class="px-6 py-4 space-y-4">
+      <div
+        class="text-2xl font-bold tracking-tight text-foreground transition-transform duration-300 group-hover:scale-105"
+      >
+        <span class="relative">
+          JM
+          <span
+            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-300 group-hover:w-full"
+            aria-hidden="true"
+          ></span>
+        </span>
+      </div>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <ul class="hidden md:flex gap-8 text-muted-foreground font-medium">
+      {
+        navLinks.map(({ href, label }) => (
+          <li>
             <a
-                href="#about"
-                class="block py-2 text-muted-foreground hover:text-primary transition-colors font-medium"
+              href={href}
+              class="nav-link relative py-2 px-1 transition-colors duration-300 hover:text-primary group outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
             >
-                Sobre mí
+              {label}
+              <span
+                class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"
+                aria-hidden="true"
+              />
             </a>
-            <a
-                href="#projects"
-                class="block py-2 text-muted-foreground hover:text-primary transition-colors font-medium"
-            >
-                Proyectos
-            </a>
-            <a
-                href="#contact"
-                class="block py-2 text-muted-foreground hover:text-primary transition-colors font-medium"
-            >
-                Contáctame
-            </a>
-            <div class="pt-4 mt-2 border-t border-border">
-                <div class="flex items-center justify-between">
-                    <span class="text-sm text-muted-foreground">Cambiar tema</span>
-                    <ThemeToggle />
-                </div>
-            </div>
-        </div>
+          </li>
+        ))
+      }
+    </ul>
+
+    <!-- Actions -->
+    <div class="flex items-center gap-4">
+      <div class="hidden md:block">
+        <ThemeToggle />
+      </div>
+
+      <button
+        id="mobile-menu-button"
+        class="md:hidden p-2 rounded-lg bg-secondary text-secondary-foreground hover:bg-muted transition-colors outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg
+          class="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
     </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden bg-background/95 backdrop-blur-md border-t border-border"
+    role="navigation"
+    aria-label="Menú móvil"
+  >
+    <div class="px-6 py-4 space-y-4">
+      {
+        navLinks.map(({ href, label }) => (
+          <a
+            href={href}
+            class="mobile-nav-link block py-2 text-muted-foreground hover:text-primary transition-colors font-medium outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
+          >
+            {label}
+          </a>
+        ))
+      }
+
+      <div class="pt-4 mt-2 border-t border-border">
+        <div class="flex items-center justify-between">
+          <span class="text-sm text-muted-foreground">Cambiar tema</span>
+          <ThemeToggle />
+        </div>
+      </div>
+    </div>
+  </div>
 </header>
 
 <script>
-    // Lógica del menú móvil
-    const mobileMenuButton = document.getElementById("mobile-menu-button");
-    const mobileMenu = document.getElementById("mobile-menu");
+  type MenuState = "open" | "closed";
 
-    mobileMenuButton?.addEventListener("click", () => {
-        mobileMenu?.classList.toggle("hidden");
-    });
+  const mobileMenuButton = document.getElementById(
+    "mobile-menu-button"
+  ) as HTMLButtonElement | null;
+  const mobileMenu = document.getElementById("mobile-menu") as HTMLElement | null;
 
-    const mobileLinks = mobileMenu?.querySelectorAll("a");
-    mobileLinks?.forEach((link) => {
-        link.addEventListener("click", () => {
-            mobileMenu?.classList.add("hidden");
-        });
-    });
+  if (!mobileMenuButton || !mobileMenu) {
+    console.error("Mobile menu elements not found");
+  }
+
+  const setMenuState = (state: MenuState): void => {
+    if (!mobileMenuButton || !mobileMenu) return;
+
+    const isOpen = state === "open";
+
+    mobileMenu.classList.toggle("hidden", !isOpen);
+    mobileMenuButton.setAttribute("aria-expanded", String(isOpen));
+    mobileMenuButton.setAttribute(
+      "aria-label",
+      isOpen ? "Cerrar menú" : "Abrir menú"
+    );
+  };
+
+  const toggleMenu = (): void => {
+    if (!mobileMenu) return;
+    const isHidden = mobileMenu.classList.contains("hidden");
+    setMenuState(isHidden ? "open" : "closed");
+  };
+
+  const closeMenu = (): void => {
+    setMenuState("closed");
+  };
+
+  // Event listeners
+  mobileMenuButton?.addEventListener("click", toggleMenu);
+
+  const mobileLinks = mobileMenu?.querySelectorAll<HTMLAnchorElement>(
+    ".mobile-nav-link"
+  );
+  mobileLinks?.forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  // Cerrar menú al presionar Escape
+  document.addEventListener("keydown", (e: KeyboardEvent) => {
+    if (e.key === "Escape" && !mobileMenu?.classList.contains("hidden")) {
+      closeMenu();
+      mobileMenuButton?.focus();
+    }
+  });
+
+  // Cerrar menú al hacer clic fuera
+  document.addEventListener("click", (e: MouseEvent) => {
+    const target = e.target as Node;
+    if (
+      mobileMenu &&
+      !mobileMenu.classList.contains("hidden") &&
+      !mobileMenu.contains(target) &&
+      !mobileMenuButton?.contains(target)
+    ) {
+      closeMenu();
+    }
+  });
 </script>

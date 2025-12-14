@@ -1,43 +1,67 @@
-# Astro Starter Kit: Minimal
+# Portfolio Personal - Jean Marco Miranda
 
-```sh
-bun create astro@latest -- --template minimal
-```
+Un portafolio web moderno, minimalista y de alto rendimiento construido con **Astro 5** y **Tailwind CSS v4**. Diseñado para destacar proyectos y habilidades con una experiencia de usuario fluida y un diseño visualmente atractivo.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🚀 Características Principales
 
-## 🚀 Project Structure
+- **Rendimiento Excepcional**: Construido sobre Astro para una carga ultrarrápida (Zero-JS by default).
+- **Diseño Responsivo**: Adaptable a todos los dispositivos (Móvil, Tablet, Desktop).
+- **Modo Oscuro/Claro**: Soporte nativo de temas con persistencia y transición suave.
+- **Micro-interacciones y Animaciones**: Uso de animaciones CSS nativas para una experiencia premium.
+- **Componentes Modulares**: Arquitectura limpia basada en componentes reutilizables.
+- **Iconografía Moderna**: Integración con Lucide Icons y Simple Icons.
 
-Inside of your Astro project, you'll see the following folders and files:
+## 🛠️ Stack Tecnológico
+
+- **Core**: [Astro 5.x](https://astro.build/) - Framework web para contenido estático.
+- **Estilos**: [Tailwind CSS v4](https://tailwindcss.com/) - Utility-first CSS framework.
+- **Iconos**: `lucide-astro` y `simple-icons`.
+- **Despliegue**: Optimizado para [Vercel](https://vercel.com/) (Adapter configurado).
+- **Runtime**: [Bun](https://bun.sh/) (recomendado) o Node.js.
+
+## 📂 Estructura del Proyecto
 
 ```text
 /
-├── public/
+├── public/               # Archivos estáticos
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── assets/           # Imágenes y assets del proyecto
+│   ├── components/       # Componentes reutilizables
+│   │   ├── layout/       # Componentes de estructura (Header, Footer)
+│   │   ├── sections/     # Secciones principales (Hero, About, Projects, Contact)
+│   │   └── ui/           # Elementos UI (ThemeToggle, Botones)
+│   ├── data/             # Datos estáticos (proyectos, config)
+│   ├── layouts/          # Layouts base de las páginas
+│   ├── pages/            # Rutas y páginas del sitio (index.astro)
+│   └── styles/           # Estilos globales CSS
+└── astro.config.mjs      # Configuración de Astro
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🧞 Comandos
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Todos los comandos se ejecutan desde la raíz del proyecto. Este proyecto usa **Bun** como gestor de paquetes.
 
-Any static assets, like images, can be placed in the `public/` directory.
+| Comando | Acción |
+| :--- | :--- |
+| `bun install` | Instala las dependencias del proyecto |
+| `bun dev` | Inicia el servidor de desarrollo en `localhost:4321` |
+| `bun build` | Compila el sitio para producción en `./dist/` |
+| `bun preview` | Previsualiza la build de producción localmente |
 
-## 🧞 Commands
+## 🔧 Personalización
 
-All commands are run from the root of the project, from a terminal:
+### Datos Personales
+Puedes editar la información principal directamente en los componentes de sección ubicados en `src/components/sections/`:
+- `Hero.astro`: Información de cabecera y fotos.
+- `AboutMe.astro`: Biografía detallada.
+- `Contact.astro`: Enlaces y medios de contacto.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
+### Proyectos
+Los proyectos se gestionan desde `src/data/projects.js` (si aplica) o directamente en el componente `Projects.astro`, permitiendo añadir o modificar trabajos fácilmente.
 
-## 👀 Want to learn more?
+## 📄 Licencia
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Este proyecto es de uso libre para fines personales y educativos.
+
+---
+Hecho con 🚀 y Astro por Jean Marco Miranda.

@@ -1,5 +1,4 @@
 ---
-// AboutMe.astro - Diseño Minimalista y Compacto
 import AboutIcon from "../ui/AboutIcon.astro";
 import {
     siAndroid,
@@ -8,21 +7,25 @@ import {
     siAstro,
     siTypescript,
     siTailwindcss,
+    siFlutter,
+    siNodedotjs,
 } from "simple-icons/icons";
 
 const techStack = [
-    siAndroid,
-    siKotlin,
     siReact,
     siAstro,
     siTypescript,
     siTailwindcss,
+    siFlutter,
+    siKotlin,
+    siAndroid,
+    siNodedotjs,
 ];
 
 const cards: {
     title: string;
     description: string;
-    icon: "code" | "education" | "projects";
+    icon: "code" | "education" | "projects" | "work";
     highlighted: boolean;
 }[] = [
     {
@@ -30,6 +33,12 @@ const cards: {
         description: "Desarrollo Frontend y Aplicaciones móviles Nativas",
         icon: "code",
         highlighted: true,
+    },
+    {
+        title: "Experiencia",
+        description: "+3 años en desarrollo Fullstack y Móvil",
+        icon: "work",
+        highlighted: false,
     },
     {
         title: "Educación",
@@ -57,14 +66,12 @@ const cards: {
     id="about"
     class="section bg-background relative overflow-hidden py-16 lg:py-20"
 >
-    <!-- Decoración minimalista -->
     <div
         class="absolute top-20 right-0 w-64 h-64 bg-primary/3 rounded-full blur-3xl"
     >
     </div>
 
     <div class="container relative z-10 max-w-6xl">
-        <!-- Header compacto -->
         <header class="text-center mb-12 lg:mb-16 animate-slide-up">
             <span
                 class="inline-block text-xs font-semibold text-primary uppercase tracking-wider mb-2 px-3 py-1 rounded-full bg-primary/5"
@@ -77,7 +84,6 @@ const cards: {
         </header>
 
         <div class="grid lg:grid-cols-5 gap-8 lg:gap-10 items-start">
-            <!-- Columna izquierda: Imagen compacta (2 columnas) -->
             <div class="lg:col-span-2 animate-fade-in">
                 <div class="relative w-full max-w-[280px] mx-auto">
                     <div
@@ -91,7 +97,6 @@ const cards: {
                         />
                     </div>
 
-                    <!-- Badge minimalista -->
                     <div
                         class="absolute -bottom-3 -right-3 w-14 h-14 bg-background border-2 border-primary rounded-xl flex items-center justify-center shadow-lg"
                     >
@@ -110,12 +115,11 @@ const cards: {
                     </div>
                 </div>
 
-                <!-- Stack tecnológico compacto y vertical -->
                 <div class="mt-8 max-w-[280px] mx-auto">
                     <h3
                         class="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3"
                     >
-                        Stack
+                        Stack Principal
                     </h3>
                     <div class="flex flex-wrap gap-2">
                         {
@@ -140,24 +144,27 @@ const cards: {
                 </div>
             </div>
 
-            <!-- Columna derecha: Contenido (3 columnas) -->
             <div class="lg:col-span-3 space-y-6">
-                <!-- Bio compacta -->
                 <div class="space-y-3">
                     <p class="text-base text-foreground leading-relaxed">
                         <span class="font-semibold text-primary"
-                            >Desarrollador Frontend</span
-                        > especializado en crear soluciones digitales de alto rendimiento,
-                        combinando arquitectura moderna con diseño centrado en UX.
+                            >Desarrollador Fullstack y Móvil</span
+                        >
+                        con más de 3 años de experiencia en la construcción de soluciones
+                        digitales robustas y escalables.
                     </p>
                     <p class="text-sm text-muted-foreground leading-relaxed">
-                        Experiencia en proyectos desde aplicaciones móviles
-                        nativas hasta sistemas web escalables, con enfoque en
-                        eficiencia y código limpio.
+                        Especializado en el desarrollo Frontend (React,
+                        TailwindCSS, Zustand) y aplicaciones móviles (Flutter,
+                        Kotlin/Android), con un fuerte enfoque en
+                        <span class="font-medium text-foreground"
+                            >arquitectura limpia, rendimiento y UX/UI.</span
+                        >
+                        He liderado proyectos que van desde aplicaciones móviles basadas
+                        en IA hasta plataformas web de monitoreo en tiempo real.
                     </p>
                 </div>
 
-                <!-- Especialización destacada -->
                 <div
                     class="p-4 rounded-xl bg-primary/5 border border-primary/20 relative overflow-hidden"
                 >
@@ -174,19 +181,17 @@ const cards: {
                         </div>
                         <div class="flex-1">
                             <h3 class="text-sm font-bold text-foreground mb-1">
-                                Especialización
+                                Especialización Principal
                             </h3>
                             <p class="text-xs text-muted-foreground">
-                                Desarrollo Frontend y Aplicaciones móviles
-                                Nativas
+                                Desarrollo Frontend, Fullstack y Aplicaciones
+                                móviles Nativas / Híbridas
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Grid compacto de información -->
                 <div class="grid sm:grid-cols-2 gap-3">
-                    <!-- Educación combinada en una sola card -->
                     <div
                         class="p-4 rounded-xl bg-card border border-border hover:border-primary/50 transition-all duration-300 group"
                     >
@@ -203,7 +208,7 @@ const cards: {
                                 <h3
                                     class="text-sm font-bold text-foreground mb-2"
                                 >
-                                    Educación
+                                    Formación Académica
                                 </h3>
                                 <ul
                                     class="space-y-1.5 text-xs text-muted-foreground"
@@ -226,7 +231,6 @@ const cards: {
                         </div>
                     </div>
 
-                    <!-- Proyectos -->
                     <div
                         class="p-4 rounded-xl bg-card border border-border hover:border-primary/50 transition-all duration-300 group"
                     >
@@ -235,7 +239,7 @@ const cards: {
                                 class="p-2 bg-muted rounded-lg mt-0.5 group-hover:bg-primary/10 transition-colors"
                             >
                                 <AboutIcon
-                                    icon="projects"
+                                    icon="work"
                                     class="w-4 h-4 text-primary"
                                 />
                             </div>
@@ -243,21 +247,43 @@ const cards: {
                                 <h3
                                     class="text-sm font-bold text-foreground mb-1"
                                 >
-                                    Proyectos
+                                    Experiencia Relevante
                                 </h3>
-                                <p class="text-xs text-muted-foreground">
-                                    Más de 5 proyectos relevantes construidos
-                                </p>
+                                <ul
+                                    class="space-y-1.5 text-xs text-muted-foreground"
+                                >
+                                    <li class="flex items-start gap-1.5">
+                                        <span class="text-primary mt-1">•</span>
+                                        <span
+                                            >Desarrollo de Apps con IA (Tiacher
+                                            - Flutter, Django)</span
+                                        >
+                                    </li>
+                                    <li class="flex items-start gap-1.5">
+                                        <span class="text-primary mt-1">•</span>
+                                        <span
+                                            >Plataformas Web Empresariales y
+                                            Monitoreo (React, .NET, NestJS)</span
+                                        >
+                                    </li>
+                                    <li class="flex items-start gap-1.5">
+                                        <span class="text-primary mt-1">•</span>
+                                        <span
+                                            >Sistemas de Componentes
+                                            Reutilizables (React, TypeScript)</span
+                                        >
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Quote minimalista -->
                 <div class="mt-6 pl-4 border-l-2 border-primary/30">
                     <p class="text-sm text-muted-foreground italic">
                         "Transformando ideas complejas en interfaces intuitivas
-                        y rápidas"
+                        y rápidas, impulsando la eficiencia operativa y la
+                        experiencia del usuario."
                     </p>
                 </div>
             </div>

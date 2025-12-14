@@ -1,4 +1,5 @@
 ---
+// Header.astro - Minimalista y Compacto
 import ThemeToggle from "../ui/ThemeToggle.astro";
 
 interface NavLink {
@@ -9,41 +10,40 @@ interface NavLink {
 const navLinks: NavLink[] = [
   { href: "#about", label: "Sobre mí" },
   { href: "#projects", label: "Proyectos" },
-  { href: "#contact", label: "Contáctame" },
+  { href: "#contact", label: "Contacto" },
 ];
 ---
 
 <header
-  class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-background/80 border-b border-border/50 shadow-sm"
+  class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-background/90 border-b border-border/30"
 >
-  <nav class="container flex items-center justify-between py-4">
-    <!-- Logo -->
+  <nav class="container flex items-center justify-between py-3">
+    <!-- Logo compacto -->
     <a
       href="#hero"
       class="group relative outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md"
       aria-label="Ir al inicio"
     >
       <div
-        class="text-2xl font-bold tracking-tight text-foreground transition-transform duration-300 group-hover:scale-105"
+        class="text-xl font-bold text-foreground transition-transform duration-300 group-hover:scale-105"
       >
         <span class="relative">
           JM
           <span
-            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-300 group-hover:w-full"
-            aria-hidden="true"
-          ></span>
+            class="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"
+            aria-hidden="true"></span>
         </span>
       </div>
     </a>
 
-    <!-- Desktop Navigation -->
-    <ul class="hidden md:flex gap-8 text-muted-foreground font-medium">
+    <!-- Desktop Navigation compacto -->
+    <ul class="hidden md:flex gap-6 text-sm">
       {
         navLinks.map(({ href, label }) => (
           <li>
             <a
               href={href}
-              class="nav-link relative py-2 px-1 transition-colors duration-300 hover:text-primary group outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
+              class="nav-link relative py-1.5 px-2 text-muted-foreground transition-colors duration-300 hover:text-foreground group outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
             >
               {label}
               <span
@@ -56,58 +56,58 @@ const navLinks: NavLink[] = [
       }
     </ul>
 
-    <!-- Actions -->
-    <div class="flex items-center gap-4">
+    <!-- Actions compactas -->
+    <div class="flex items-center gap-2">
       <div class="hidden md:block">
         <ThemeToggle />
       </div>
 
       <button
         id="mobile-menu-button"
-        class="md:hidden p-2 rounded-lg bg-secondary text-secondary-foreground hover:bg-muted transition-colors outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        class="md:hidden p-2 rounded-lg bg-card border border-border hover:bg-muted transition-colors outline-none focus-visible:ring-2 focus-visible:ring-primary"
         aria-label="Abrir menú"
         aria-expanded="false"
         aria-controls="mobile-menu"
       >
         <svg
-          class="w-5 h-5"
+          class="w-5 h-5 text-foreground"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
           aria-hidden="true"
+          stroke-width="2"
         >
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
-            stroke-width="2"
             d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
       </button>
     </div>
   </nav>
 
-  <!-- Mobile Menu -->
+  <!-- Mobile Menu compacto -->
   <div
     id="mobile-menu"
-    class="hidden md:hidden bg-background/95 backdrop-blur-md border-t border-border"
+    class="hidden md:hidden bg-background/95 backdrop-blur-md border-t border-border/30"
     role="navigation"
     aria-label="Menú móvil"
   >
-    <div class="px-6 py-4 space-y-4">
+    <div class="px-4 py-3 space-y-2">
       {
         navLinks.map(({ href, label }) => (
           <a
             href={href}
-            class="mobile-nav-link block py-2 text-muted-foreground hover:text-primary transition-colors font-medium outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
+            class="mobile-nav-link block py-2 px-3 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             {label}
           </a>
         ))
       }
 
-      <div class="pt-4 mt-2 border-t border-border">
-        <div class="flex items-center justify-between">
-          <span class="text-sm text-muted-foreground">Cambiar tema</span>
+      <div class="pt-3 mt-2 border-t border-border/30">
+        <div class="flex items-center justify-between px-3 py-2">
+          <span class="text-xs text-muted-foreground">Tema</span>
           <ThemeToggle />
         </div>
       </div>
@@ -119,9 +119,11 @@ const navLinks: NavLink[] = [
   type MenuState = "open" | "closed";
 
   const mobileMenuButton = document.getElementById(
-    "mobile-menu-button"
+    "mobile-menu-button",
   ) as HTMLButtonElement | null;
-  const mobileMenu = document.getElementById("mobile-menu") as HTMLElement | null;
+  const mobileMenu = document.getElementById(
+    "mobile-menu",
+  ) as HTMLElement | null;
 
   if (!mobileMenuButton || !mobileMenu) {
     console.error("Mobile menu elements not found");
@@ -136,7 +138,7 @@ const navLinks: NavLink[] = [
     mobileMenuButton.setAttribute("aria-expanded", String(isOpen));
     mobileMenuButton.setAttribute(
       "aria-label",
-      isOpen ? "Cerrar menú" : "Abrir menú"
+      isOpen ? "Cerrar menú" : "Abrir menú",
     );
   };
 
@@ -150,17 +152,14 @@ const navLinks: NavLink[] = [
     setMenuState("closed");
   };
 
-  // Event listeners
   mobileMenuButton?.addEventListener("click", toggleMenu);
 
-  const mobileLinks = mobileMenu?.querySelectorAll<HTMLAnchorElement>(
-    ".mobile-nav-link"
-  );
+  const mobileLinks =
+    mobileMenu?.querySelectorAll<HTMLAnchorElement>(".mobile-nav-link");
   mobileLinks?.forEach((link) => {
     link.addEventListener("click", closeMenu);
   });
 
-  // Cerrar menú al presionar Escape
   document.addEventListener("keydown", (e: KeyboardEvent) => {
     if (e.key === "Escape" && !mobileMenu?.classList.contains("hidden")) {
       closeMenu();
@@ -168,7 +167,6 @@ const navLinks: NavLink[] = [
     }
   });
 
-  // Cerrar menú al hacer clic fuera
   document.addEventListener("click", (e: MouseEvent) => {
     const target = e.target as Node;
     if (

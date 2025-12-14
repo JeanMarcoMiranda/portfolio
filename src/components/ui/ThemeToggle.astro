@@ -1,10 +1,15 @@
+---
+// ThemeToggle.astro - Minimalista y Compacto
+---
+
 <button
-  class="theme-toggle-btn group relative p-2.5 rounded-xl bg-background border border-border hover:border-primary/50 hover:bg-muted shadow-sm transition-all duration-300 active:scale-95 backdrop-blur-sm cursor-pointer"
+  class="theme-toggle-btn group relative p-2 rounded-lg bg-card border border-border hover:border-primary/50 hover:bg-muted transition-all duration-300 active:scale-95 cursor-pointer"
   type="button"
   aria-label="Cambiar tema"
 >
+  <!-- Sol (Light mode) -->
   <svg
-    class="w-5 h-5 text-accent transition-transform duration-500 group-hover:rotate-45 dark:hidden"
+    class="w-4 h-4 text-foreground transition-transform duration-300 group-hover:rotate-45 dark:hidden"
     fill="currentColor"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
@@ -14,8 +19,9 @@
     ></path>
   </svg>
 
+  <!-- Luna (Dark mode) -->
   <svg
-    class="w-5 h-5 text-primary hidden transition-transform duration-500 group-hover:-rotate-12 dark:block"
+    class="w-4 h-4 text-primary hidden transition-transform duration-300 group-hover:-rotate-12 dark:block"
     fill="currentColor"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
@@ -23,14 +29,8 @@
     <path
       fill-rule="evenodd"
       d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"
-      clip-rule="evenodd"
-    ></path>
+      clip-rule="evenodd"></path>
   </svg>
-
-  <div
-    class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-gradient-to-r from-primary to-accent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-[1px]"
-  >
-  </div>
 </button>
 
 <script is:inline>
@@ -55,7 +55,6 @@
 </script>
 
 <script>
-  // Aplicar event listener a TODOS los botones con la clase
   const handleToggleClick = () => {
     const element = document.documentElement;
     element.classList.toggle("dark");

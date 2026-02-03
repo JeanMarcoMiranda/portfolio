@@ -10,10 +10,20 @@ const roles = [
 ];
 
 const metrics = [
-  { value: "3+", label: "Años", icon: Clock },
-  { value: "15+", label: "Proyectos", icon: Rocket },
-  { value: "8+", label: "Tecnologías", icon: Code2 },
-  { value: "100%", label: "Remoto", icon: Globe },
+  { value: "3+", labelId: "metric-years", label: "Años", icon: Clock },
+  {
+    value: "15+",
+    labelId: "metric-projects",
+    label: "Proyectos",
+    icon: Rocket,
+  },
+  {
+    value: "8+",
+    labelId: "metric-technologies",
+    label: "Tecnologías",
+    icon: Code2,
+  },
+  { value: "100%", labelId: "metric-remote", label: "Remoto", icon: Globe },
 ];
 ---
 
@@ -65,9 +75,8 @@ const metrics = [
         class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted/50 border border-border/50"
       >
         <span class="text-sm text-muted-foreground">
-          Hola, soy <span class="text-foreground font-semibold"
-            >Jean Marco Miranda</span
-          >
+          <span id="hero-greeting">Hola, soy</span>
+          <span class="text-foreground font-semibold">Jean Marco Miranda</span>
         </span>
       </div>
 
@@ -116,7 +125,9 @@ const metrics = [
             >
               0
             </div>
-            <div class="text-xs text-muted-foreground mt-1">{metric.label}</div>
+            <div class="text-xs text-muted-foreground mt-1" id={metric.labelId}>
+              {metric.label}
+            </div>
           </div>
         ))
       }
@@ -131,7 +142,7 @@ const metrics = [
         href="#contact"
         class="inline-flex items-center justify-center px-6 py-2.5 text-sm rounded-full bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:scale-[1.02] transition-all duration-300"
       >
-        <span>Contáctame</span>
+        <span id="hero-cta-contact">Contáctame</span>
         <svg
           class="w-4 h-4 ml-2"
           fill="none"

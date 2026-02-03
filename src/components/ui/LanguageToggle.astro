@@ -1,0 +1,98 @@
+---
+// LanguageToggle.astro - Componente para cambiar idioma
+import { Languages } from "lucide-astro";
+---
+
+<button
+  id="language-toggle-btn"
+  class="language-toggle-btn group relative p-2 rounded-lg bg-card border border-border hover:border-primary/50 hover:bg-muted transition-all duration-300 active:scale-95 cursor-pointer"
+  type="button"
+  aria-label="Cambiar idioma"
+  title="Cambiar idioma"
+>
+  <Languages
+    class="w-4 h-4 text-foreground transition-transform duration-300 group-hover:rotate-12"
+  />
+  <span class="sr-only">Toggle language</span>
+</button>
+
+<script is:inline>
+  // Detectar idioma del sistema o usar el guardado
+  function getInitialLanguage() {
+    // Primero intentar obtener del localStorage
+    if (
+      typeof localStorage !== "undefined" &&
+      localStorage.getItem("language")
+    ) {
+      return localStorage.getItem("language");
+    }
+
+    // Detectar idioma del navegador
+    const browserLang = navigator.language || navigator.userLanguage;
+
+    // Si es español, usar español, sino inglés por defecto
+    if (browserLang.startsWith("es")) {
+      return "es";
+    }
+
+    return "en";
+  }
+
+  // Aplicar idioma inicial cuando el DOM esté listo
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () {
+      const currentLang = getInitialLanguage();
+      document.documentElement.setAttribute("lang", currentLang);
+      if (typeof localStorage !== "undefined") {
+        localStorage.setItem("language", currentLang);
+      }
+    });
+  } else {
+    const currentLang = getInitialLanguage();
+    document.documentElement.setAttribute("lang", currentLang);
+    if (typeof localStorage !== "undefined") {
+      localStorage.setItem("language", currentLang);
+    }
+  }
+</script>
+
+<script>
+  function initLanguageToggle() {
+    const languageToggleBtn = document.getElementById("language-toggle-btn");
+
+    if (!languageToggleBtn) {
+      console.warn("Language toggle button not found");
+      return;
+    }
+
+    function toggleLanguage() {
+      const currentLang = document.documentElement.getAttribute("lang") || "en";
+      const newLang = currentLang === "en" ? "es" : "en";
+
+      console.log(`Changing language from ${currentLang} to ${newLang}`);
+
+      // Actualizar atributo lang del documento
+      document.documentElement.setAttribute("lang", newLang);
+
+      // Guardar en localStorage
+      localStorage.setItem("language", newLang);
+
+      // Disparar evento personalizado para que otros componentes puedan reaccionar
+      window.dispatchEvent(
+        new CustomEvent("languagechange", { detail: { language: newLang } }),
+      );
+
+      console.log(`Language changed to: ${newLang}`);
+    }
+
+    languageToggleBtn.addEventListener("click", toggleLanguage);
+    console.log("Language toggle initialized");
+  }
+
+  // Inicializar cuando el DOM esté listo
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initLanguageToggle);
+  } else {
+    initLanguageToggle();
+  }
+</script>

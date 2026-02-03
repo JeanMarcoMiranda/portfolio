@@ -1,6 +1,7 @@
 ---
 // Header.astro - Minimalista y Compacto
 import ThemeToggle from "../ui/ThemeToggle.astro";
+import LanguageToggle from "../ui/LanguageToggle.astro";
 
 interface NavLink {
   href: string;
@@ -38,27 +39,48 @@ const navLinks: NavLink[] = [
 
     <!-- Desktop Navigation compacto -->
     <ul class="hidden md:flex gap-6 text-sm">
-      {
-        navLinks.map(({ href, label }) => (
-          <li>
-            <a
-              href={href}
-              class="nav-link relative py-1.5 px-2 text-muted-foreground transition-colors duration-300 hover:text-foreground group outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
-            >
-              {label}
-              <span
-                class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"
-                aria-hidden="true"
-              />
-            </a>
-          </li>
-        ))
-      }
+      <li>
+        <a
+          href="#about"
+          id="nav-about"
+          class="nav-link relative py-1.5 px-2 text-muted-foreground transition-colors duration-300 hover:text-foreground group outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
+        >
+          Sobre mí
+          <span
+            class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"
+            aria-hidden="true"></span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="#projects"
+          id="nav-projects"
+          class="nav-link relative py-1.5 px-2 text-muted-foreground transition-colors duration-300 hover:text-foreground group outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
+        >
+          Proyectos
+          <span
+            class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"
+            aria-hidden="true"></span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="#contact"
+          id="nav-contact"
+          class="nav-link relative py-1.5 px-2 text-muted-foreground transition-colors duration-300 hover:text-foreground group outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
+        >
+          Contacto
+          <span
+            class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"
+            aria-hidden="true"></span>
+        </a>
+      </li>
     </ul>
 
     <!-- Actions compactas -->
     <div class="flex items-center gap-2">
-      <div class="hidden md:block">
+      <div class="hidden md:flex items-center gap-2">
+        <LanguageToggle />
         <ThemeToggle />
       </div>
 

@@ -27,11 +27,12 @@ const mobileProjects = projects.filter((p) => p.type === "mobile");
     <!-- Header -->
     <div class="text-center mb-10">
       <h2
+        id="projects-title"
         class="text-2xl sm:text-3xl font-bold text-foreground mb-3 tracking-tight"
       >
         Proyectos Destacados
       </h2>
-      <p class="text-sm text-muted-foreground max-w-2xl mx-auto">
+      <p id="projects-subtitle" class="text-sm text-muted-foreground max-w-2xl mx-auto">
         Una selección de mis trabajos más recientes en desarrollo web y móvil
       </p>
     </div>
@@ -42,12 +43,14 @@ const mobileProjects = projects.filter((p) => p.type === "mobile");
     >
       <button
         data-tab="web"
+        id="projects-tab-web"
         class="tab-btn active px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300"
       >
         Web
       </button>
       <button
         data-tab="mobile"
+        id="projects-tab-mobile"
         class="tab-btn px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300"
       >
         Mobile

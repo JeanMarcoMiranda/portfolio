@@ -1,19 +1,82 @@
 ---
 import Header from "../components/layout/Header.astro";
-import '../styles/global.css'
+import "../styles/global.css";
 ---
 
 <html lang="es" class="scroll-smooth">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width", initial-scale=1.0 />
-        <meta name="generator" content={Astro.generator} />
-        <title>Jean Marco Miranda | Portfolio</title>
-    </head>
-    <body class="transition-colors">
-        <Header />
-        <main>
-            <slot />
-        </main>
-    </body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" , initial-scale="1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Jean Marco Miranda | Portfolio</title>
+  </head>
+  <body class="transition-colors">
+    <!-- Barra de progreso de lectura -->
+    <div
+      id="reading-progress"
+      class="fixed top-0 left-0 h-1 bg-gradient-to-r from-primary via-accent to-primary z-[9999] transition-all duration-150"
+      style="width: 0%"
+    >
+    </div>
+
+    <Header />
+    <main>
+      <slot />
+    </main>
+  </body>
+
+  <script>
+    // Barra de progreso de lectura
+    const progressBar = document.getElementById("reading-progress");
+
+    function updateProgressBar() {
+      const windowHeight = window.innerHeight;
+      const documentHeight =
+        document.documentElement.scrollHeight - windowHeight;
+      const scrolled = window.scrollY;
+      const progress = (scrolled / documentHeight) * 100;
+
+      if (progressBar) {
+        progressBar.style.width = progress + "%";
+      }
+    }
+
+    window.addEventListener("scroll", updateProgressBar);
+    window.addEventListener("resize", updateProgressBar);
+
+    // Animaciones de reveal al scroll
+    const revealElements = document.querySelectorAll(".section");
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("revealed");
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      },
+    );
+
+    revealElements.forEach((el) => {
+      el.classList.add("reveal-section");
+      revealObserver.observe(el);
+    });
+  </script>
+
+  <style is:global>
+    .reveal-section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal-section.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </html>

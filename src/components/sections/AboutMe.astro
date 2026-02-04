@@ -1,322 +1,508 @@
 ---
 import AboutIcon from "../ui/AboutIcon.astro";
 import {
-    siAndroid,
-    siKotlin,
-    siReact,
-    siAstro,
-    siTypescript,
-    siTailwindcss,
-    siFlutter,
-    siNodedotjs,
+  siAndroid,
+  siKotlin,
+  siReact,
+  siAstro,
+  siTypescript,
+  siTailwindcss,
+  siFlutter,
+  siNodedotjs,
 } from "simple-icons/icons";
 
 const techStack = [
-    siReact,
-    siAstro,
-    siTypescript,
-    siTailwindcss,
-    siFlutter,
-    siKotlin,
-    siAndroid,
-    siNodedotjs,
-];
-
-const cards: {
-    title: string;
-    description: string;
-    icon: "code" | "education" | "projects" | "work";
-    highlighted: boolean;
-}[] = [
-    {
-        title: "Especialización",
-        description: "Desarrollo Frontend y Aplicaciones móviles Nativas",
-        icon: "code",
-        highlighted: true,
-    },
-    {
-        title: "Experiencia",
-        description: "+3 años en desarrollo Fullstack y Móvil",
-        icon: "work",
-        highlighted: false,
-    },
-    {
-        title: "Educación",
-        description: "Tecnico en Desarrollo de software - TECSUP",
-        icon: "education",
-        highlighted: false,
-    },
-    {
-        title: "Educación",
-        description:
-            "Egresado en Ingenieria de Sistemas - Universidad Tecnológica del Perú (UTP)",
-        icon: "education",
-        highlighted: false,
-    },
-    {
-        title: "Proyectos",
-        description: "Más de 5 proyectos relevantes construidos",
-        icon: "projects",
-        highlighted: false,
-    },
+  { icon: siReact, name: "React" },
+  { icon: siAstro, name: "Astro" },
+  { icon: siTypescript, name: "TypeScript" },
+  { icon: siTailwindcss, name: "Tailwind" },
+  { icon: siFlutter, name: "Flutter" },
+  { icon: siKotlin, name: "Kotlin" },
+  { icon: siAndroid, name: "Android" },
+  { icon: siNodedotjs, name: "Node.js" },
 ];
 ---
 
 <section
-    id="about"
-    class="section bg-background relative overflow-hidden py-16 lg:py-20"
+  id="about"
+  class="section relative overflow-hidden py-20 md:py-32"
+  style="background: linear-gradient(to bottom, hsl(var(--background)), hsl(var(--background)) 50%, hsl(var(--muted)) 100%);"
 >
+  <!-- Efectos de fondo -->
+  <div class="absolute inset-0 overflow-hidden">
     <div
-        class="absolute top-20 right-0 w-64 h-64 bg-primary/3 rounded-full blur-3xl"
+      class="absolute top-20 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse-slow"
     >
     </div>
-
-    <div class="container relative z-10 max-w-6xl">
-        <header class="text-center mb-12 lg:mb-16 animate-slide-up">
-            <span
-                class="inline-block text-xs font-semibold text-primary uppercase tracking-wider mb-2 px-3 py-1 rounded-full bg-primary/5"
-            >
-                Sobre mí
-            </span>
-            <h2 class="text-3xl lg:text-4xl font-bold text-foreground">
-                Jean Marco Miranda
-            </h2>
-        </header>
-
-        <div class="grid lg:grid-cols-5 gap-8 lg:gap-10 items-start">
-            <div class="lg:col-span-2 animate-fade-in">
-                <div class="relative w-full max-w-[280px] mx-auto">
-                    <div
-                        class="aspect-[3/4] relative rounded-2xl overflow-hidden shadow-lg border border-border/30 bg-card"
-                    >
-                        <img
-                            src="/profile_photo.jpg"
-                            alt="Jean Marco Miranda profile"
-                            class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                            loading="lazy"
-                        />
-                    </div>
-
-                    <div
-                        class="absolute -bottom-3 -right-3 w-14 h-14 bg-background border-2 border-primary rounded-xl flex items-center justify-center shadow-lg"
-                    >
-                        <svg
-                            class="w-5 h-5 text-primary"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            stroke-width="2.5"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M5 13l4 4L19 7"></path>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="mt-8 max-w-[280px] mx-auto">
-                    <h3
-                        class="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3"
-                    >
-                        Stack Principal
-                    </h3>
-                    <div class="flex flex-wrap gap-2">
-                        {
-                            techStack.map((tech) => (
-                                <div class="group relative">
-                                    <div class="w-10 h-10 bg-card border border-border rounded-lg flex items-center justify-center hover:border-primary transition-all duration-300 hover:shadow-md">
-                                        <svg
-                                            class="w-5 h-5"
-                                            viewBox="0 0 24 24"
-                                            fill={`#${tech.hex}`}
-                                        >
-                                            <path d={tech.path} />
-                                        </svg>
-                                    </div>
-                                    <span class="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-foreground text-background text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-                                        {tech.title}
-                                    </span>
-                                </div>
-                            ))
-                        }
-                    </div>
-                </div>
-            </div>
-
-            <div class="lg:col-span-3 space-y-6">
-                <div class="space-y-3">
-                    <p class="text-base text-foreground leading-relaxed">
-                        <span class="font-semibold text-primary"
-                            >Desarrollador Fullstack y Móvil</span
-                        >
-                        con más de 3 años de experiencia en la construcción de soluciones
-                        digitales robustas y escalables.
-                    </p>
-                    <p class="text-sm text-muted-foreground leading-relaxed">
-                        Especializado en el desarrollo Frontend (React,
-                        TailwindCSS, Zustand) y aplicaciones móviles (Flutter,
-                        Kotlin/Android), con un fuerte enfoque en
-                        <span class="font-medium text-foreground"
-                            >arquitectura limpia, rendimiento y UX/UI.</span
-                        >
-                        He liderado proyectos que van desde aplicaciones móviles basadas
-                        en IA hasta plataformas web de monitoreo en tiempo real.
-                    </p>
-                </div>
-
-                <div
-                    class="p-4 rounded-xl bg-primary/5 border border-primary/20 relative overflow-hidden"
-                >
-                    <div
-                        class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-2xl"
-                    >
-                    </div>
-                    <div class="relative flex items-start gap-3">
-                        <div class="p-2 bg-primary/10 rounded-lg mt-0.5">
-                            <AboutIcon
-                                icon="code"
-                                class="w-4 h-4 text-primary"
-                            />
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-sm font-bold text-foreground mb-1">
-                                Especialización Principal
-                            </h3>
-                            <p class="text-xs text-muted-foreground">
-                                Desarrollo Frontend, Fullstack y Aplicaciones
-                                móviles Nativas / Híbridas
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="grid sm:grid-cols-2 gap-3">
-                    <div
-                        class="p-4 rounded-xl bg-card border border-border hover:border-primary/50 transition-all duration-300 group"
-                    >
-                        <div class="flex items-start gap-3">
-                            <div
-                                class="p-2 bg-muted rounded-lg mt-0.5 group-hover:bg-primary/10 transition-colors"
-                            >
-                                <AboutIcon
-                                    icon="education"
-                                    class="w-4 h-4 text-primary"
-                                />
-                            </div>
-                            <div class="flex-1 min-w-0">
-                                <h3
-                                    class="text-sm font-bold text-foreground mb-2"
-                                >
-                                    Formación Académica
-                                </h3>
-                                <ul
-                                    class="space-y-1.5 text-xs text-muted-foreground"
-                                >
-                                    <li class="flex items-start gap-1.5">
-                                        <span class="text-primary mt-1">•</span>
-                                        <span
-                                            >Técnico en Desarrollo de Software -
-                                            TECSUP</span
-                                        >
-                                    </li>
-                                    <li class="flex items-start gap-1.5">
-                                        <span class="text-primary mt-1">•</span>
-                                        <span
-                                            >Ing. de Sistemas - UTP (Egresado)</span
-                                        >
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div
-                        class="p-4 rounded-xl bg-card border border-border hover:border-primary/50 transition-all duration-300 group"
-                    >
-                        <div class="flex items-start gap-3">
-                            <div
-                                class="p-2 bg-muted rounded-lg mt-0.5 group-hover:bg-primary/10 transition-colors"
-                            >
-                                <AboutIcon
-                                    icon="work"
-                                    class="w-4 h-4 text-primary"
-                                />
-                            </div>
-                            <div class="flex-1">
-                                <h3
-                                    class="text-sm font-bold text-foreground mb-1"
-                                >
-                                    Experiencia Relevante
-                                </h3>
-                                <ul
-                                    class="space-y-1.5 text-xs text-muted-foreground"
-                                >
-                                    <li class="flex items-start gap-1.5">
-                                        <span class="text-primary mt-1">•</span>
-                                        <span
-                                            >Desarrollo de Apps con IA (Tiacher
-                                            - Flutter, Django)</span
-                                        >
-                                    </li>
-                                    <li class="flex items-start gap-1.5">
-                                        <span class="text-primary mt-1">•</span>
-                                        <span
-                                            >Plataformas Web Empresariales y
-                                            Monitoreo (React, .NET, NestJS)</span
-                                        >
-                                    </li>
-                                    <li class="flex items-start gap-1.5">
-                                        <span class="text-primary mt-1">•</span>
-                                        <span
-                                            >Sistemas de Componentes
-                                            Reutilizables (React, TypeScript)</span
-                                        >
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-6 pl-4 border-l-2 border-primary/30">
-                    <p class="text-sm text-muted-foreground italic">
-                        "Transformando ideas complejas en interfaces intuitivas
-                        y rápidas, impulsando la eficiencia operativa y la
-                        experiencia del usuario."
-                    </p>
-                </div>
-            </div>
-        </div>
+    <div
+      class="absolute bottom-20 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse-slow"
+      style="animation-delay: 1s;"
+    >
     </div>
+  </div>
+
+  <div class="container relative z-10 max-w-7xl px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div
+      class="text-center mb-16 md:mb-24 animate-fade-down"
+      style="animation-delay: 0.1s;"
+    >
+      <div
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 backdrop-blur-sm border border-primary/20 mb-6"
+      >
+        <span class="relative flex h-2 w-2">
+          <span
+            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"
+          ></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"
+          ></span>
+        </span>
+        <span
+          class="text-xs font-semibold text-primary uppercase tracking-wider"
+          >Disponible para proyectos</span
+        >
+      </div>
+
+      <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4">
+        <span class="block text-foreground">Jean Marco</span>
+        <span
+          class="block bg-gradient-to-r from-primary via-primary to-primary/60 bg-clip-text text-transparent"
+          >Miranda</span
+        >
+      </h2>
+
+      <p class="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+        Fullstack & Mobile Developer especializado en crear experiencias
+        digitales excepcionales
+      </p>
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="max-w-5xl mx-auto space-y-8">
+      <!-- Hero Card con imagen -->
+      <div
+        class="relative group animate-scale-in"
+        style="animation-delay: 0.2s;"
+      >
+        <div
+          class="absolute -inset-1 bg-gradient-to-r from-primary/20 to-primary/10 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        >
+        </div>
+
+        <div
+          class="relative grid md:grid-cols-5 gap-8 p-8 md:p-10 rounded-3xl border border-border/50 backdrop-blur-xl bg-card/50"
+        >
+          <!-- Imagen -->
+          <div class="md:col-span-2">
+            <div
+              class="aspect-[3/4] relative rounded-2xl overflow-hidden border border-border/30 shadow-2xl"
+            >
+              <img
+                src="/profile_photo.jpg"
+                alt="Jean Marco Miranda"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent"
+              >
+              </div>
+
+              <!-- Badge sobre la imagen -->
+              <div
+                class="absolute bottom-4 left-4 right-4 flex items-center gap-2 px-4 py-3 rounded-xl bg-background/80 backdrop-blur-md border border-border/30"
+              >
+                <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse">
+                </div>
+                <span class="text-sm font-medium text-foreground"
+                  >3+ años de experiencia</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Contenido -->
+          <div class="md:col-span-3 space-y-6 flex flex-col justify-center">
+            <div>
+              <div
+                class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-4"
+              >
+                <svg
+                  class="w-4 h-4 text-primary"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+                  ></path>
+                </svg>
+                <span class="text-xs font-semibold text-primary"
+                  >Especialista</span
+                >
+              </div>
+
+              <h3 class="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                Desarrollador Fullstack & Móvil
+              </h3>
+
+              <p class="text-muted-foreground leading-relaxed">
+                Transformo ideas complejas en interfaces limpias y funcionales.
+                Especializado en <strong class="text-foreground">React</strong>, <strong
+                  class="text-foreground">Flutter</strong
+                > y <strong class="text-foreground">Kotlin/Android</strong>, con
+                un enfoque obsesivo en arquitectura limpia y experiencia de
+                usuario.
+              </p>
+            </div>
+
+            <!-- Mini stats -->
+            <div class="flex flex-wrap gap-4">
+              <div
+                class="flex items-center gap-2 px-4 py-2 rounded-xl bg-muted/50 border border-border/30"
+              >
+                <svg
+                  class="w-5 h-5 text-primary"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+                  ></path>
+                </svg>
+                <span class="text-sm font-medium text-foreground"
+                  >5+ Proyectos</span
+                >
+              </div>
+
+              <div
+                class="flex items-center gap-2 px-4 py-2 rounded-xl bg-muted/50 border border-border/30"
+              >
+                <svg
+                  class="w-5 h-5 text-primary"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+                <span class="text-sm font-medium text-foreground"
+                  >Clean Architecture</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid de cards -->
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Card Stack -->
+        <div
+          class="md:col-span-2 p-6 md:p-8 rounded-3xl border border-border/50 backdrop-blur-xl bg-card/50 hover:border-primary/30 transition-all duration-500 animate-slide-up"
+          style="animation-delay: 0.3s;"
+        >
+          <div class="flex items-center gap-3 mb-6">
+            <div class="p-2 bg-primary/10 rounded-xl border border-primary/20">
+              <svg
+                class="w-5 h-5 text-primary"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-foreground">Stack Tecnológico</h3>
+          </div>
+
+          <div class="grid grid-cols-4 gap-3">
+            {
+              techStack.map((tech, index) => (
+                <div
+                  class="group relative"
+                  style={`animation: pop-in 0.4s ease-out forwards; animation-delay: ${0.4 + index * 0.05}s; opacity: 0;`}
+                >
+                  <div class="aspect-square rounded-2xl border border-border/50 bg-muted/30 backdrop-blur-sm hover:border-primary hover:bg-primary/5 transition-all duration-300 hover:scale-110 hover:-rotate-3 flex flex-col items-center justify-center gap-2 cursor-pointer">
+                    <svg
+                      class="w-7 h-7"
+                      viewBox="0 0 24 24"
+                      fill={`#${tech.icon.hex}`}
+                    >
+                      <path d={tech.icon.path} />
+                    </svg>
+                    <span class="text-[9px] font-medium text-muted-foreground group-hover:text-primary transition-colors">
+                      {tech.name}
+                    </span>
+                  </div>
+
+                  {/* Tooltip */}
+                  <div class="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-foreground text-background text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-lg">
+                    {tech.name}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Card Educación -->
+        <div
+          class="p-6 md:p-8 rounded-3xl border border-border/50 backdrop-blur-xl bg-card/50 hover:border-primary/30 transition-all duration-500 animate-slide-up"
+          style="animation-delay: 0.4s;"
+        >
+          <div class="flex items-center gap-3 mb-6">
+            <div class="p-2 bg-primary/10 rounded-xl border border-primary/20">
+              <svg
+                class="w-5 h-5 text-primary"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-foreground">Formación</h3>
+          </div>
+
+          <div class="space-y-5">
+            <div>
+              <p class="text-sm font-semibold text-foreground mb-1">
+                Técnico en Desarrollo
+              </p>
+              <p class="text-xs text-muted-foreground">TECSUP</p>
+            </div>
+
+            <div
+              class="h-px bg-gradient-to-r from-transparent via-border to-transparent"
+            >
+            </div>
+
+            <div>
+              <p class="text-sm font-semibold text-foreground mb-1">
+                Ing. de Sistemas
+              </p>
+              <p class="text-xs text-muted-foreground">UTP (Egresado)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Experiencia full width -->
+      <div
+        class="p-6 md:p-8 rounded-3xl border border-primary/20 backdrop-blur-xl bg-gradient-to-br from-primary/5 via-card/50 to-card/50 hover:border-primary/40 transition-all duration-500 relative overflow-hidden animate-slide-up"
+        style="animation-delay: 0.5s;"
+      >
+        <div
+          class="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl"
+        >
+        </div>
+
+        <div class="relative z-10">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="p-2 bg-primary/20 rounded-xl border border-primary/30">
+              <svg
+                class="w-5 h-5 text-primary"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-foreground">
+              Experiencia Destacada
+            </h3>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="space-y-2">
+              <div class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                <div>
+                  <p class="text-sm font-semibold text-foreground">
+                    Apps con IA
+                  </p>
+                  <p class="text-xs text-muted-foreground">Flutter & Django</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <div class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                <div>
+                  <p class="text-sm font-semibold text-foreground">
+                    Plataformas Web
+                  </p>
+                  <p class="text-xs text-muted-foreground">React & .NET</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <div class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                <div>
+                  <p class="text-sm font-semibold text-foreground">
+                    Design Systems
+                  </p>
+                  <p class="text-xs text-muted-foreground">
+                    React & TypeScript
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quote final -->
+      <div
+        class="text-center pt-8 animate-fade-in"
+        style="animation-delay: 0.6s;"
+      >
+        <p
+          class="text-lg md:text-xl text-muted-foreground italic max-w-3xl mx-auto"
+        >
+          "Transformando ideas complejas en interfaces intuitivas que impulsan
+          la eficiencia operativa y la experiencia del usuario"
+        </p>
+      </div>
+    </div>
+  </div>
 </section>
 
 <style>
-    @keyframes slide-up {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+  @keyframes fade-down {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
     }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
-    @keyframes fade-in {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
     }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 
-    .animate-slide-up {
-        animation: slide-up 0.6s ease-out forwards;
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
     }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
-    .animate-fade-in {
-        animation: fade-in 0.8s ease-out forwards;
+  @keyframes pop-in {
+    from {
+      opacity: 0;
+      transform: scale(0.5) rotate(-10deg);
     }
+    to {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+  }
+
+  @keyframes pulse-slow {
+    0%,
+    100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.1);
+    }
+  }
+
+  .animate-fade-down {
+    animation: fade-down 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-in {
+    animation: fade-down 1s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
 </style>

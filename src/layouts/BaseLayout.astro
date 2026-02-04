@@ -6,15 +6,14 @@ import "../styles/global.css";
 <html lang="es" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" , initial-scale="1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
     <title>Jean Marco Miranda | Portfolio</title>
   </head>
-  <body class="transition-colors">
-    <!-- Barra de progreso de lectura -->
+  <body class="bg-background text-foreground transition-colors duration-300">
     <div
       id="reading-progress"
-      class="fixed top-0 left-0 h-1 bg-gradient-to-r from-primary via-accent to-primary z-[9999] transition-all duration-150"
+      class="fixed top-0 left-0 h-1 bg-gradient-to-r from-scarlet-600 to-scarlet-400 z-[9999] transition-all duration-150 ease-out"
       style="width: 0%"
     >
     </div>
@@ -23,63 +22,88 @@ import "../styles/global.css";
     <main>
       <slot />
     </main>
+
+    <script>
+      const setupLayout = () => {
+        // Barra de progreso de lectura
+        const progressBar = document.getElementById("reading-progress");
+
+        const updateProgressBar = () => {
+          const windowHeight = window.innerHeight;
+          const documentHeight =
+            document.documentElement.scrollHeight - windowHeight;
+          const scrolled = window.scrollY;
+          const progress = (scrolled / documentHeight) * 100;
+
+          if (progressBar) {
+            progressBar.style.width = `${progress}%`;
+          }
+        };
+
+        window.addEventListener("scroll", updateProgressBar);
+        window.addEventListener("resize", updateProgressBar);
+
+        // Animaciones de reveal al scroll
+        const revealElements = document.querySelectorAll(".section");
+
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("revealed");
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px",
+          },
+        );
+
+        revealElements.forEach((el) => {
+          el.classList.add("reveal-section");
+          revealObserver.observe(el);
+        });
+      };
+
+      // Ejecutar en carga inicial y en cambios de página de Astro
+      setupLayout();
+      document.addEventListener("astro:after-swap", setupLayout);
+    </script>
+
+    <script src="../scripts/i18n.ts"></script>
   </body>
 
-  <script>
-    // Barra de progreso de lectura
-    const progressBar = document.getElementById("reading-progress");
-
-    function updateProgressBar() {
-      const windowHeight = window.innerHeight;
-      const documentHeight =
-        document.documentElement.scrollHeight - windowHeight;
-      const scrolled = window.scrollY;
-      const progress = (scrolled / documentHeight) * 100;
-
-      if (progressBar) {
-        progressBar.style.width = progress + "%";
-      }
-    }
-
-    window.addEventListener("scroll", updateProgressBar);
-    window.addEventListener("resize", updateProgressBar);
-
-    // Animaciones de reveal al scroll
-    const revealElements = document.querySelectorAll(".section");
-
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("revealed");
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
-      },
-    );
-
-    revealElements.forEach((el) => {
-      el.classList.add("reveal-section");
-      revealObserver.observe(el);
-    });
-  </script>
-
-  <!-- Script de i18n para traducciones dinámicas -->
-  <script src="../scripts/i18n.ts"></script>
-
   <style is:global>
+    /* Estilos de animación consistentes con la paleta Moderno Cálido */
     .reveal-section {
       opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(20px);
+      transition:
+        opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity;
     }
 
     .reveal-section.revealed {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    /* Mejora del scrollbar para que combine con el fondo Stone */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--color-stone-100);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--color-stone-300);
+      border-radius: 5px;
+      border: 2px solid var(--color-stone-100);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--color-stone-400);
     }
   </style>
 </html>

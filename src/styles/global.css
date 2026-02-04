@@ -1,49 +1,34 @@
 @import "tailwindcss";
 
-
-
 @theme {
-  /* -- Color Palette: Scarlet (Primary) -- */
-  --color-scarlet-50: oklch(0.97 0.01 25);
-  --color-scarlet-100: oklch(0.95 0.04 25);
-  --color-scarlet-200: oklch(0.90 0.08 25);
-  --color-scarlet-300: oklch(0.82 0.13 25);
-  --color-scarlet-400: oklch(0.70 0.19 25);
-  --color-scarlet-500: oklch(0.58 0.24 25);
-  --color-scarlet-600: oklch(0.48 0.22 25);
-  --color-scarlet-700: oklch(0.38 0.19 25);
-  --color-scarlet-800: oklch(0.30 0.15 25);
-  --color-scarlet-900: oklch(0.23 0.11 25);
-  --color-scarlet-950: oklch(0.15 0.07 25);
+  /* -- Color Palette: Moderno Cálido (Escarlata) -- */
+  /* Generamos una escala basada en tu Rojo #BC2525 */
+  --color-scarlet-50: #fef2f2;
+  --color-scarlet-100: #fee2e2;
+  --color-scarlet-200: #fecaca;
+  --color-scarlet-300: #fca5a5;
+  --color-scarlet-400: #f87171;
+  --color-scarlet-500: #e63939; /* Tu versión Dark */
+  --color-scarlet-600: #bc2525; /* Tu versión Light */
+  --color-scarlet-700: #991b1b;
+  --color-scarlet-800: #7f1d1d;
+  --color-scarlet-900: #450a0a;
 
-  /* -- Color Palette: Slate (Neutral) -- */
-  --color-slate-50: oklch(0.99 0.00 0);
-  --color-slate-100: oklch(0.97 0.00 0);
-  --color-slate-200: oklch(0.93 0.01 240);
-  --color-slate-300: oklch(0.87 0.01 240);
-  --color-slate-400: oklch(0.71 0.02 245);
-  --color-slate-500: oklch(0.55 0.03 250);
-  --color-slate-600: oklch(0.43 0.03 255);
-  --color-slate-700: oklch(0.35 0.03 260);
-  --color-slate-800: oklch(0.26 0.02 265);
-  --color-slate-900: oklch(0.19 0.02 265);
-  --color-slate-950: oklch(0.13 0.01 270);
+  /* -- Color Palette: Stone (Neutrales Cálidos) -- */
+  /* Reemplazamos Slate (frío) por Stone (cálido) para tu paleta */
+  --color-stone-50: #faf9f6;  /* Fondo Light */
+  --color-stone-100: #f1eee7; /* Secundario Light */
+  --color-stone-200: #e2ddd2; /* Borde Light */
+  --color-stone-300: #d6d3d1;
+  --color-stone-400: #a8a29e;
+  --color-stone-500: #78716c;
+  --color-stone-600: #524945; /* Borde Dark */
+  --color-stone-700: #403936; /* Secundario Dark */
+  --color-stone-800: #2d2826; /* Fondo Dark */
+  --color-stone-900: #322d2b; /* Texto Light */
+  --color-stone-950: #1c1917;
 
-  /* -- Color Palette: Amber (Accent) -- */
-  --color-amber-50: oklch(0.99 0.02 85);
-  --color-amber-100: oklch(0.97 0.05 85);
-  --color-amber-200: oklch(0.93 0.10 85);
-  --color-amber-300: oklch(0.88 0.15 80);
-  --color-amber-400: oklch(0.82 0.18 75);
-  --color-amber-500: oklch(0.74 0.17 70);
-  --color-amber-600: oklch(0.62 0.15 65);
-  --color-amber-700: oklch(0.50 0.13 60);
-  --color-amber-800: oklch(0.41 0.11 55);
-  --color-amber-900: oklch(0.35 0.09 50);
-  --color-amber-950: oklch(0.24 0.06 45);
-
-  /* -- Semantic Mapping (Tailwind v4) -- */
-  /* Allows using utility classes like 'bg-primary' that adapt to mode */
+  /* -- Semantic Mapping -- */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
@@ -52,112 +37,51 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
   --color-border: var(--border);
-  --color-ring: var(--ring);
 
-  /* -- Typography & Spacing -- */
+  /* -- Typography -- */
   --font-sans: "Fraunces", "Inter", "system-ui", "sans-serif";
-  --font-mono: "Fira Code", "Consolas", "monospace";
-  
-  /* Custom Spacing */
   --spacing-18: 4.5rem;
-  --spacing-112: 28rem;
-  --spacing-128: 32rem;
-  
-  /* Custom Radius */
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
 }
 
-@font-face {
-  font-family: "Fraunces";
-  src: url("/fonts/Fraunces-9ptBlack.woff2") format("woff2");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Fraunces";
-  src: url("/fonts/Fraunces-9ptBlackItalic.woff2") format("woff2");
-  font-weight: 100 900;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* -------------------------------------------------------------------------- */
-/* 2. LIGHT / DARK MODE LOGIC                                                */
-/* Maps the primitives above to semantic variables based on context.         */
-/* -------------------------------------------------------------------------- */
-
 @layer base {
   :root {
-    /* Light Mode Defaults */
-    --background: var(--color-slate-50);
-    --foreground: var(--color-slate-950);
+    --background: var(--color-stone-50);
+    --foreground: var(--color-stone-900);
 
     --primary: var(--color-scarlet-600);
-    --primary-foreground: var(--color-white);
+    --primary-foreground: var(--color-stone-50);
 
-    --secondary: var(--color-slate-200);
-    --secondary-foreground: var(--color-slate-900);
+    --secondary: var(--color-stone-100);
+    --secondary-foreground: var(--color-stone-800);
 
-    --muted: var(--color-slate-100);
-    --muted-foreground: var(--color-slate-600);
+    --muted: var(--color-stone-200);
+    --muted-foreground: var(--color-stone-500);
 
-    --accent: var(--color-amber-500);
-    --accent-foreground: var(--color-white);
-
-    --border: var(--color-slate-200);
-    --ring: var(--color-scarlet-500);
+    --border: var(--color-stone-200);
   }
 
   .dark {
-    /* Dark Mode Overrides */
-    --background: var(--color-slate-950);
-    --foreground: var(--color-slate-50);
+    --background: var(--color-stone-800);
+    --foreground: #f7f5f2; /* Blanco crema específico de tu paleta */
 
     --primary: var(--color-scarlet-500);
-    --primary-foreground: var(--color-white);
+    --primary-foreground: #ffffff;
 
-    --secondary: var(--color-slate-800);
-    --secondary-foreground: var(--color-slate-100);
+    --secondary: var(--color-stone-700);
+    --secondary-foreground: var(--color-stone-50);
 
-    --muted: var(--color-slate-800);
-    --muted-foreground: var(--color-slate-400);
+    --muted: var(--color-stone-600);
+    --muted-foreground: var(--color-stone-400);
 
-    --accent: var(--color-amber-400);
-    --accent-foreground: var(--color-slate-950);
-
-    --border: var(--color-slate-800);
-    --ring: var(--color-scarlet-400);
-  }
-
-  /* ------------------------------------------------------------------------ */
-  /* 3. GLOBAL RESET & TYPOGRAPHY                                             */
-  /* ------------------------------------------------------------------------ */
-  
-  html {
-    @apply scroll-smooth;
-    -webkit-font-smoothing: antialiased;
+    --border: var(--color-stone-600);
   }
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    /* Optional: Better text rendering */
-    font-feature-settings: "rlig" 1, "calt" 1;
   }
-
-  /* Consistent Headings */
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-bold tracking-tight text-foreground;
-  }
-  
-  h1 { @apply text-4xl; }
-  h2 { @apply text-3xl; }
-  h3 { @apply text-2xl; }
 }
 
 /* -------------------------------------------------------------------------- */

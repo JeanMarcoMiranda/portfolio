@@ -1,9 +1,6 @@
 @import "tailwindcss";
 
-/* -------------------------------------------------------------------------- */
-/* 1. THEME PRIMITIVES & CONFIGURATION                                       */
-/* Define raw values (colors, fonts, spacing) available as utilities.        */
-/* -------------------------------------------------------------------------- */
+
 
 @theme {
   /* -- Color Palette: Scarlet (Primary) -- */
@@ -61,7 +58,7 @@
   --color-ring: var(--ring);
 
   /* -- Typography & Spacing -- */
-  --font-sans: "Inter", "system-ui", "sans-serif";
+  --font-sans: "Fraunces", "Inter", "system-ui", "sans-serif";
   --font-mono: "Fira Code", "Consolas", "monospace";
   
   /* Custom Spacing */
@@ -72,6 +69,22 @@
   /* Custom Radius */
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
+}
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("/fonts/Fraunces-9ptBlack.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("/fonts/Fraunces-9ptBlackItalic.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
 }
 
 /* -------------------------------------------------------------------------- */

@@ -93,7 +93,7 @@ const mobileProjects = projects.filter((p) => p.type === "mobile");
         <div
           id="tab-glider"
           class="absolute top-1.5 bottom-1.5 left-1.5 rounded-full bg-primary shadow-lg shadow-primary/25 transition-all duration-500 cubic-bezier(0.4, 0, 0.2, 1)"
-          style="width: calc(50% - 6px); transform: translateX(0);"
+          style="width: calc(50% - 6px); transform: translateX(100%);"
         >
           <!-- Brillo interno del glider -->
           <div
@@ -105,7 +105,7 @@ const mobileProjects = projects.filter((p) => p.type === "mobile");
         <!-- Botón Web -->
         <button
           data-tab="web"
-          class="tab-btn relative z-10 px-8 py-2.5 text-sm sm:text-base font-bold rounded-full transition-colors duration-300 text-primary-foreground"
+          class="tab-btn relative z-10 px-8 py-2.5 text-sm sm:text-base font-bold rounded-full transition-colors duration-300 text-muted-foreground hover:text-foreground"
         >
           <span class="flex items-center gap-2">
             <Globe class="w-4 h-4" />
@@ -116,7 +116,7 @@ const mobileProjects = projects.filter((p) => p.type === "mobile");
         <!-- Botón Mobile -->
         <button
           data-tab="mobile"
-          class="tab-btn relative z-10 px-8 py-2.5 text-sm sm:text-base font-bold rounded-full transition-colors duration-300 text-muted-foreground hover:text-foreground"
+          class="tab-btn relative z-10 px-8 py-2.5 text-sm sm:text-base font-bold rounded-full transition-colors duration-300 text-primary-foreground"
         >
           <span class="flex items-center gap-2">
             <Smartphone class="w-4 h-4" />
@@ -132,7 +132,7 @@ const mobileProjects = projects.filter((p) => p.type === "mobile");
       <div
         id="web-panel"
         data-panel="web"
-        class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8"
+        class="hidden grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8"
       >
         {
           webProjects.map((project, index) => (
@@ -273,7 +273,7 @@ const mobileProjects = projects.filter((p) => p.type === "mobile");
       <div
         id="mobile-panel"
         data-panel="mobile"
-        class="hidden grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10"
       >
         {
           mobileProjects.map((project, index) => (

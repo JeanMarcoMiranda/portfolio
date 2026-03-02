@@ -1,10 +1,18 @@
 ---
-// Header.astro - Minimalista y Compacto
+/**
+ * @file Header.astro
+ * @description Main navigation header component with responsive design, mobile menu, and theme/language toggles.
+ */
 import ThemeToggle from "../ui/ThemeToggle.astro";
 import LanguageToggle from "../ui/LanguageToggle.astro";
 
+/**
+ * Interface defining the structure of navigation links
+ */
 interface NavLink {
+  /** URL destination of the link */
   href: string;
+  /** Display text of the link */
   label: string;
 }
 
@@ -147,9 +155,10 @@ const navLinks: NavLink[] = [
     "mobile-menu",
   ) as HTMLElement | null;
 
-  if (!mobileMenuButton || !mobileMenu) {
-    console.error("Mobile menu elements not found");
-  }
+  /**
+   * Sets the visibility state of the mobile menu
+   * @param {MenuState} state - The desired state ('open' or 'closed')
+   */
 
   const setMenuState = (state: MenuState): void => {
     if (!mobileMenuButton || !mobileMenu) return;
@@ -164,12 +173,18 @@ const navLinks: NavLink[] = [
     );
   };
 
+  /**
+   * Toggles the mobile menu open/closed state
+   */
   const toggleMenu = (): void => {
     if (!mobileMenu) return;
     const isHidden = mobileMenu.classList.contains("hidden");
     setMenuState(isHidden ? "open" : "closed");
   };
 
+  /**
+   * Closes the mobile menu
+   */
   const closeMenu = (): void => {
     setMenuState("closed");
   };

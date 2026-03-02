@@ -1,5 +1,9 @@
 ---
-// LanguageToggle.astro - Componente para cambiar idioma
+/**
+ * @file LanguageToggle.astro
+ * @description Button component to toggle between supported languages (English/Spanish).
+ * Handles persistence via localStorage and auto-detects browser language.
+ */
 import { Languages } from "lucide-astro";
 ---
 
@@ -17,7 +21,10 @@ import { Languages } from "lucide-astro";
 </button>
 
 <script is:inline>
-  // Detectar idioma del sistema o usar el guardado
+  /**
+   * Detects the initial language based on local storage or browser settings.
+   * @returns {string} 'es' or 'en'
+   */
   function getInitialLanguage() {
     // Primero intentar obtener del localStorage
     if (
@@ -38,7 +45,7 @@ import { Languages } from "lucide-astro";
     return "en";
   }
 
-  // Aplicar idioma inicial cuando el DOM esté listo
+  // Apply initial language when DOM is ready
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", function () {
       const currentLang = getInitialLanguage();
@@ -57,6 +64,10 @@ import { Languages } from "lucide-astro";
 </script>
 
 <script>
+  /**
+   * Initializes the language toggle functionality.
+   * Sets up event listeners and handles state changes.
+   */
   function initLanguageToggle() {
     const languageToggleBtn = document.getElementById("language-toggle-btn");
 
@@ -86,7 +97,6 @@ import { Languages } from "lucide-astro";
     }
 
     languageToggleBtn.addEventListener("click", toggleLanguage);
-    console.log("Language toggle initialized");
   }
 
   // Inicializar cuando el DOM esté listo

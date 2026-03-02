@@ -1,8 +1,14 @@
 ---
-// src/components/AboutIcon.astro
+/**
+ * @file AboutIcon.astro
+ * @description Reusable icon component for the About Me section.
+ * Renders different SVG icons based on the `icon` prop.
+ */
 
 interface Props {
+  /** The type of icon to display */
   icon: "code" | "education" | "projects" | "work";
+  /** Optional CSS classes */
   class?: string;
 }
 

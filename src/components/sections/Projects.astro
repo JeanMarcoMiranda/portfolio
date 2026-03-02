@@ -1,5 +1,9 @@
 ---
-// Projects.astro - Glassmorphism Style OPTIMIZED
+/**
+ * @file Projects.astro
+ * @description Projects section displaying web and mobile projects.
+ * Features a tab switcher for filtering project types.
+ */
 import { projects } from "../../data/projects";
 import {
   Star,
@@ -443,12 +447,17 @@ const mobileProjects = projects.filter((p) => p.type === "mobile");
 </section>
 
 <script>
-  // Tab switcher con efecto Slider 'Glider'
+  // Tab switcher elements
   const tabButtons = document.querySelectorAll(".tab-btn");
   const tabGlider = document.getElementById("tab-glider");
   const webPanel = document.getElementById("web-panel");
   const mobilePanel = document.getElementById("mobile-panel");
 
+  /**
+   * Handles the tab switch event (Web <-> Mobile)
+   * Updates UI state and animates panel transitions.
+   * @param {Event} event - Click event
+   */
   function handleSwitch(event: Event) {
     const clickedButton = (event.target as HTMLElement).closest(".tab-btn");
     if (!clickedButton) return;

@@ -1,4 +1,9 @@
 ---
+/**
+ * @file BaseLayout.astro
+ * @description Main layout component containing the common structure (head, body, header) for all pages.
+ * Includes reading progress bar and scroll animations.
+ */
 import Header from "../components/layout/Header.astro";
 import "../styles/global.css";
 ---
@@ -25,10 +30,16 @@ import "../styles/global.css";
     </main>
 
     <script>
+      /**
+       * Initializes layout interactions including progress bar and scroll animations.
+       */
       const setupLayout = () => {
-        // Barra de progreso de lectura
+        // Reading progress bar element
         const progressBar = document.getElementById("reading-progress");
 
+        /**
+         * Updates the width of the reading progress bar based on scroll position.
+         */
         const updateProgressBar = () => {
           const windowHeight = window.innerHeight;
           const documentHeight =
@@ -44,7 +55,7 @@ import "../styles/global.css";
         window.addEventListener("scroll", updateProgressBar);
         window.addEventListener("resize", updateProgressBar);
 
-        // Animaciones de reveal al scroll
+        // Scroll reveal animations registration
         const revealElements = document.querySelectorAll(".section");
 
         const revealObserver = new IntersectionObserver(

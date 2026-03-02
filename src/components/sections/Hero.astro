@@ -1,5 +1,9 @@
 ---
-// Hero.astro - Glassmorphism Style
+/**
+ * @file Hero.astro
+ * @description Hero section component with rotating text, metrics, and call-to-action buttons.
+ * Implements intersection observer for animating metrics.
+ */
 import { Clock, Rocket, Code2, Globe } from "lucide-astro";
 
 const roles = [
@@ -354,6 +358,10 @@ const metrics = [
   const textElement = document.getElementById("rotating-text");
   let currentIndex = 0;
 
+  /**
+   * Rotates the text in the hero section through the defined roles.
+   * Handles entrance and exit animations.
+   */
   function rotateText() {
     if (!textElement) return;
 
@@ -378,9 +386,14 @@ const metrics = [
 </script>
 
 <script>
-  // Animación de conteo para métricas
+  // Animation logic for metrics
   const metricNumbers = document.querySelectorAll(".metric-number");
 
+  /**
+   * Animates a numerical value from 0 to target.
+   * @param {Element} element - The DOM element to update
+   * @param {string} target - The target value string (e.g., "30+")
+   */
   const animateValue = (element: Element, target: string) => {
     const isPercentage = target.includes("%");
     const isPlus = target.includes("+");
@@ -401,7 +414,7 @@ const metrics = [
     }, duration / steps);
   };
 
-  // Intersection Observer para animar cuando sea visible
+  // Intersection Observer to trigger animations when elements become visible
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {

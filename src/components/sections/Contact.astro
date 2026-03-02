@@ -1,5 +1,9 @@
 ---
-// Contact.astro - Glassmorphism Style
+/**
+ * @file Contact.astro
+ * @description Contact section component with a form and social media links.
+ * Features glassmorphism styling and form validation/simulation.
+ */
 import { Mail, MapPin, Send, Loader2 } from "lucide-astro";
 ---
 
@@ -425,10 +429,16 @@ import { Mail, MapPin, Send, Loader2 } from "lucide-astro";
 </section>
 
 <script>
+  /* Form elements selection */
   const form = document.getElementById("contact-form") as HTMLFormElement;
   const btnText = document.getElementById("btn-text");
   const btnLoader = document.getElementById("btn-loader");
   const feedback = document.getElementById("form-feedback");
+
+  /**
+   * Handles form submission
+   * @param {Event} e - The submit event
+   */
 
   form?.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -442,7 +452,7 @@ import { Mail, MapPin, Send, Loader2 } from "lucide-astro";
     btnLoader?.classList.remove("hidden");
     feedback?.classList.add("hidden");
 
-    // Simulación de envío (conectar con backend/Formspree/EmailJS)
+    // Simulate network delay for form submission (replace with actual API call)
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
     submitBtn.disabled = false;

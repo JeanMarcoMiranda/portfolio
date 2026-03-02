@@ -1,4 +1,8 @@
-// src/i18n/translations.ts
+/**
+ * @file translations.ts
+ * @description Static translation strings for English and Spanish.
+ * Returns semantic objects grouped by component/section.
+ */
 
 export const translations = {
   en: {

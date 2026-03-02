@@ -1,4 +1,8 @@
-// src/i18n/utils.ts
+/**
+ * @file utils.ts
+ * @description Utility functions for internationalization.
+ * Handles language detection and translation retrieval.
+ */
 
 import { translations, type Language } from './translations';
 

@@ -1,5 +1,30 @@
 // src/data/projects.js
 
+/**
+ * @typedef {Object} Project
+ * @property {string} id - Unique identifier
+ * @property {'web'|'mobile'} type - Project type
+ * @property {string} title - Project title
+ * @property {string} challenge - Problem description
+ * @property {string} solution - Solution description
+ * @property {string} impact - Impact/Results
+ * @property {string[]} role - Roles performed
+ * @property {string[]} stack - Technologies used
+ * @property {string} architecture - Architecture pattern
+ * @property {string} imageUrl - Project image path
+ * @property {string[]} tags - Display tags
+ * @property {string} [link] - Live demo URL
+ * @property {string} [github] - Repository URL
+ * @property {boolean} isPrivate - If code is private
+ * @property {boolean} featured - If project should be featured
+ * @property {string} year - Year of development
+ */
+
+/**
+ * Collection of portfolio projects
+ * @type {Project[]}
+ */
+
 export const projects = [
   // --- Proyectos Web ---
   {
@@ -191,13 +216,26 @@ export const projects = [
   },
 ];
 
-// Función helper para obtener proyectos destacados
+// Helper functions for filtering projects
+
+/**
+ * Returns only featured projects
+ * @returns {Project[]}
+ */
 export const getFeaturedProjects = () => projects.filter((p) => p.featured);
 
-// Función helper para obtener proyectos por tipo
+/**
+ * Returns projects filtered by type
+ * @param {'web'|'mobile'} type
+ * @returns {Project[]}
+ */
 export const getProjectsByType = (type) =>
   projects.filter((p) => p.type === type);
 
-// Función helper para obtener proyectos por año
+/**
+ * Returns projects filtered by year
+ * @param {string} year
+ * @returns {Project[]}
+ */
 export const getProjectsByYear = (year) =>
   projects.filter((p) => p.year === year);

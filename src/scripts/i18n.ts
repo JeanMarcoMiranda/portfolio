@@ -1,4 +1,8 @@
-// src/scripts/i18n.ts - Sistema de traducciones dinámico completo
+/**
+ * @file i18n.ts
+ * @description Dynamic translation system script.
+ * Handles runtime language switching, DOM updates, and hero text rotation sync.
+ */
 
 // Traducciones completas
 const translations = {
@@ -102,54 +106,52 @@ const heroRoles = {
   es: ["Desarrollador Mobile", "Frontend Specialist", "Full Stack Developer", "UI/UX Enthusiast"]
 };
 
+/**
+ * Updates DOM elements with translations for the selected language.
+ * Updates textContent and specific attributes like placeholders.
+ * @param {Language} lang - The language to switch to
+ */
 function updateTranslations(lang: Language) {
-  console.log(`Updating translations to: ${lang}`);
-  
-  // Obtener todas las traducciones para el idioma seleccionado
+  // Get all translations for selected language
   const langTranslations = translations[lang];
   
-  // Actualizar cada elemento con su traducción
+  // Update each element with its translation
   Object.entries(langTranslations).forEach(([id, text]) => {
     const element = document.getElementById(id);
     if (element) {
-      // Para inputs y textareas, actualizar el placeholder
+      // Handle inputs and textareas placeholders
       if (id.includes('placeholder')) {
         const inputId = id.replace('-placeholder', '');
         const inputElement = document.getElementById(inputId) as HTMLInputElement | HTMLTextAreaElement;
         if (inputElement) {
           inputElement.placeholder = text;
-          console.log(`Updated placeholder for #${inputId} to: ${text}`);
         }
       } else {
         element.textContent = text;
-        console.log(`Updated #${id} to: ${text}`);
       }
     }
   });
   
-  // Actualizar roles del Hero si existe el elemento
+  // Update Hero section rotating text
   const rotatingText = document.getElementById('rotating-text');
   if (rotatingText) {
     const roles = heroRoles[lang];
     rotatingText.setAttribute('data-roles', JSON.stringify(roles));
-    // Reiniciar la animación de rotación
+    // Reset rotation animation
     const event = new CustomEvent('resetRotation', { detail: { roles } });
     window.dispatchEvent(event);
-    console.log('Updated hero roles:', roles);
   }
 }
 
 // Escuchar cambios de idioma
 window.addEventListener('languagechange', (event: Event) => {
   const customEvent = event as CustomEvent<{ language: Language }>;
-  console.log('Language change event received:', customEvent.detail.language);
   updateTranslations(customEvent.detail.language);
 });
 
 // Aplicar traducciones iniciales cuando el DOM esté listo
 function initTranslations() {
   const currentLang = (document.documentElement.getAttribute('lang') || 'es') as Language;
-  console.log('Initializing translations with language:', currentLang);
   updateTranslations(currentLang);
 }
 

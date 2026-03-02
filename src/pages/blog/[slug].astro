@@ -1,0 +1,170 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { ArrowLeft, Calendar, Tag } from "lucide-astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.slug || post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+let Content;
+if (typeof render === "function") {
+  const rendered = await render(post);
+  Content = rendered.Content;
+} else {
+  // @ts-ignore
+  const rendered = await post.render();
+  Content = rendered.Content;
+}
+---
+
+<BaseLayout
+  title={`${post.data.title} | Jean Marco Miranda`}
+  description={post.data.description}
+>
+  <article
+    class="pt-24 pb-20 md:pt-32 md:pb-32 min-h-screen relative overflow-hidden"
+  >
+    <!-- Efectos de fondo glassmorphism -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+      <div
+        class="absolute top-40 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] animate-pulse-slow"
+      >
+      </div>
+    </div>
+
+    <div class="container relative z-10 max-w-4xl px-4 sm:px-6 lg:px-8">
+      <!-- Navegación y metadatos -->
+      <div class="mb-10 animate-fade-down" style="animation-delay: 0.1s;">
+        <a
+          href="/blog"
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border/50 bg-card/50 backdrop-blur-sm text-sm font-medium text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors mb-8 group"
+        >
+          <ArrowLeft
+            class="w-4 h-4 transition-transform group-hover:-translate-x-1"
+          />
+          Volver al blog
+        </a>
+
+        <div
+          class="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6"
+        >
+          <div
+            class="flex items-center gap-1.5 bg-muted/50 px-3 py-1.5 rounded-full border border-border/50 shadow-sm"
+          >
+            <Calendar class="w-4 h-4 text-primary" />
+            <time datetime={post.data.pubDate.toISOString()}>
+              {
+                post.data.pubDate.toLocaleDateString("es-ES", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })
+              }
+            </time>
+          </div>
+
+          {
+            post.data.tags && post.data.tags.length > 0 && (
+              <div class="flex flex-wrap items-center gap-2">
+                <Tag class="w-4 h-4 text-primary/60" />
+                {post.data.tags.map((tag: string) => (
+                  <span class="bg-secondary/60 text-secondary-foreground shadow-sm px-2.5 py-1 rounded-lg border border-border/30 font-medium text-xs">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )
+          }
+        </div>
+
+        <h1
+          class="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight"
+        >
+          {post.data.title}
+        </h1>
+
+        <p class="text-xl text-muted-foreground leading-relaxed font-medium">
+          {post.data.description}
+        </p>
+      </div>
+
+      <div
+        class="h-px w-full bg-gradient-to-r from-transparent via-border to-transparent mb-12 animate-fade-in"
+        style="animation-delay: 0.2s;"
+      >
+      </div>
+
+      <!-- Contenido Markdown -->
+      <div
+        class="prose max-w-none animate-slide-up"
+        style="animation-delay: 0.3s;"
+      >
+        <Content />
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  @keyframes fade-down {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes pulse-slow {
+    0%,
+    100% {
+      opacity: 0.4;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.6;
+      transform: scale(1.1);
+    }
+  }
+
+  .animate-fade-down {
+    animation: fade-down 0.8s ease-out forwards;
+    opacity: 0;
+  }
+  .animate-slide-up {
+    animation: slide-up 0.8s ease-out forwards;
+    opacity: 0;
+  }
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out forwards;
+    opacity: 0;
+  }
+  .animate-pulse-slow {
+    animation: pulse-slow 5s ease-in-out infinite;
+  }
+</style>

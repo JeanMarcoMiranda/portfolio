@@ -70,6 +70,10 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
 
   /* -- Typography -- */
   --font-sans: "Inter", "system-ui", "sans-serif";
@@ -98,6 +102,12 @@
     --muted-foreground: var(--color-stone-500);
 
     --border: var(--color-stone-200);
+    
+    --card: var(--color-stone-50);
+    --card-foreground: var(--color-stone-900);
+    
+    --accent: var(--color-stone-200);
+    --accent-foreground: var(--color-stone-900);
   }
 
   .dark {
@@ -114,6 +124,12 @@
     --muted-foreground: var(--color-stone-400);
 
     --border: var(--color-stone-600);
+    
+    --card: var(--color-stone-800);
+    --card-foreground: #f7f5f2;
+    
+    --accent: var(--color-stone-700);
+    --accent-foreground: var(--color-stone-50);
   }
 
   body {
@@ -139,5 +155,58 @@
   /* Standard Section Spacing */
   .section {
     @apply py-16 md:py-24;
+  }
+
+  /* Prose Styles for Markdown (Blog) */
+  .prose {
+    @apply text-foreground/90;
+  }
+  .prose h1, .prose h2, .prose h3, .prose h4 {
+    @apply text-foreground font-bold font-heading mb-4 mt-8;
+  }
+  .prose h1 {
+    @apply text-4xl;
+  }
+  .prose h2 {
+    @apply text-3xl;
+  }
+  .prose h3 {
+    @apply text-2xl;
+  }
+  .prose p {
+    @apply leading-relaxed mb-6 text-lg;
+  }
+  .prose a {
+    @apply text-primary font-medium hover:underline decoration-primary/50 underline-offset-4 transition-colors;
+  }
+  .prose ul, .prose ol {
+    @apply pl-6 mb-6 space-y-2 text-lg;
+  }
+  .prose ul {
+    @apply list-disc;
+  }
+  .prose ol {
+    @apply list-decimal;
+  }
+  .prose li::marker {
+    @apply text-primary/70;
+  }
+  .prose blockquote {
+    @apply pl-4 border-l-4 border-primary/50 italic text-muted-foreground my-6 bg-muted/10 py-2 pr-4 rounded-r-lg;
+  }
+  .prose code {
+    @apply bg-muted/50 px-1.5 py-0.5 rounded text-sm font-mono text-primary;
+  }
+  .prose pre {
+    @apply bg-card/80 border border-border/50 p-4 rounded-xl overflow-x-auto mb-6 shadow-inner;
+  }
+  .prose pre code {
+    @apply bg-transparent p-0 text-foreground/90 font-mono text-sm;
+  }
+  .prose img {
+    @apply rounded-xl max-w-full h-auto my-8 shadow-md border border-border/30;
+  }
+  .prose strong {
+    @apply font-bold text-foreground;
   }
 }

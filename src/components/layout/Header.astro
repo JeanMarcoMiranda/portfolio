@@ -19,6 +19,7 @@ interface NavLink {
 const navLinks: NavLink[] = [
   { href: "#about", label: "Sobre mí" },
   { href: "#projects", label: "Proyectos" },
+  { href: "#blog", label: "Blog" },
   { href: "#contact", label: "Contacto" },
 ];
 ---
@@ -66,6 +67,18 @@ const navLinks: NavLink[] = [
           class="nav-link relative py-1.5 px-2 text-muted-foreground transition-colors duration-300 hover:text-foreground group outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
         >
           Proyectos
+          <span
+            class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"
+            aria-hidden="true"></span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="#blog"
+          id="nav-blog"
+          class="nav-link relative py-1.5 px-2 text-muted-foreground transition-colors duration-300 hover:text-foreground group outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
+        >
+          Blog
           <span
             class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"
             aria-hidden="true"></span>

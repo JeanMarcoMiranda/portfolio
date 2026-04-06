@@ -1,0 +1,144 @@
+---
+/**
+ * @component SeriesBreadcrumb
+ * @description Breadcrumb contextual que muestra: Blog > Serie > Fase > Paso actual.
+ */
+
+interface Props {
+  seriesSlug: string;
+  seriesTitle: string;
+  phaseTitle?: string;
+  stepTitle?: string;
+}
+
+const { seriesSlug, seriesTitle, phaseTitle, stepTitle } = Astro.props;
+
+// El slug de la serie es el primer segmento del slug del post
+// ej: "nestjs-curso/01-instalacion" → slug de serie = "nestjs-curso"
+const seriesIndexUrl = `/blog/${seriesSlug}`;
+---
+
+<nav class="breadcrumb" aria-label="Ruta de navegación">
+  <ol class="breadcrumb-list" role="list">
+    <li class="breadcrumb-item">
+      <a href="/blog" class="breadcrumb-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+        </svg>
+        Blog
+      </a>
+    </li>
+
+    <li class="breadcrumb-separator" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m9 18 6-6-6-6"/>
+      </svg>
+    </li>
+
+    <li class="breadcrumb-item">
+      <a href={seriesIndexUrl} class="breadcrumb-link breadcrumb-link--series">
+        {seriesTitle}
+      </a>
+    </li>
+
+    {phaseTitle && (
+      <>
+        <li class="breadcrumb-separator" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m9 18 6-6-6-6"/>
+          </svg>
+        </li>
+        <li class="breadcrumb-item">
+          <span class="breadcrumb-current">{phaseTitle}</span>
+        </li>
+      </>
+    )}
+
+    {stepTitle && (
+      <>
+        <li class="breadcrumb-separator" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m9 18 6-6-6-6"/>
+          </svg>
+        </li>
+        <li class="breadcrumb-item">
+          <span class="breadcrumb-current breadcrumb-current--step">{stepTitle}</span>
+        </li>
+      </>
+    )}
+  </ol>
+</nav>
+
+<style>
+  .breadcrumb {
+    margin-bottom: 1.5rem;
+  }
+
+  .breadcrumb-list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .breadcrumb-item {
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumb-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--muted-foreground);
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.4rem;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+  .breadcrumb-link:hover {
+    color: var(--foreground);
+    background: color-mix(in srgb, var(--muted) 40%, transparent);
+  }
+  .breadcrumb-link--series {
+    color: var(--primary);
+    font-weight: 600;
+  }
+  .breadcrumb-link--series:hover {
+    background: color-mix(in srgb, var(--primary) 10%, transparent);
+    color: var(--primary);
+  }
+
+  .breadcrumb-separator {
+    color: color-mix(in srgb, var(--border) 80%, transparent);
+    display: flex;
+    align-items: center;
+    padding: 0 0.1rem;
+  }
+
+  .breadcrumb-current {
+    font-size: 0.8rem;
+    color: var(--muted-foreground);
+    padding: 0.25rem 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+  }
+  .breadcrumb-current--step {
+    color: var(--foreground);
+    font-weight: 600;
+  }
+
+  @media (max-width: 480px) {
+    .breadcrumb-current {
+      max-width: 130px;
+    }
+  }
+</style>

@@ -1,12 +1,40 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
-import { Calendar, BookOpen, ArrowLeft } from "lucide-astro";
+import { Calendar, BookOpen, ArrowLeft, Layers } from "lucide-astro";
 
 const allPosts = await getCollection("blog");
-const sortedPosts = allPosts.sort(
-  (a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+
+// Separar posts normales de posts de serie
+const standalonePosts = allPosts.filter((p: any) => !p.data.series);
+
+// Agrupar posts de serie: una entrada por serie única
+const seriesMap = new Map<string, any>();
+for (const post of allPosts) {
+  if (post.data.series) {
+    const seriesId = post.data.series as string;
+    if (!seriesMap.has(seriesId)) {
+      // Usar el primer post (menor order) como representante de la serie
+      seriesMap.set(seriesId, post);
+    } else {
+      const existing = seriesMap.get(seriesId);
+      if ((post.data.order ?? 0) < (existing.data.order ?? 0)) {
+        seriesMap.set(seriesId, post);
+      }
+    }
+  }
+}
+
+// Construir el listado final: posts normales + una entrada por serie
+// Ordenados por fecha de publicación descendente
+const displayItems = [
+  ...standalonePosts.map((p: any) => ({ type: "post" as const, post: p, seriesId: null })),
+  ...Array.from(seriesMap.entries()).map(([seriesId, post]) => ({
+    type: "series" as const,
+    post,
+    seriesId,
+  })),
+].sort((a, b) => b.post.data.pubDate.valueOf() - a.post.data.pubDate.valueOf());
 ---
 
 <BaseLayout
@@ -59,56 +87,70 @@ const sortedPosts = allPosts.sort(
 
       <!-- Grid de Posts -->
       {
-        sortedPosts.length > 0 ? (
+        displayItems.length > 0 ? (
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {sortedPosts.map((post: any, index: number) => (
-              <article
-                class="group relative animate-slide-up h-full flex flex-col"
-                style={`animation-delay: ${0.2 + (index % 3) * 0.1}s;`}
-              >
-                <div class="absolute -inset-0.5 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 rounded-[1.75rem] blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
+            {displayItems.map((item: any, index: number) => {
+              const { type, post, seriesId } = item;
+              const href =
+                type === "series"
+                  ? `/blog/${seriesId}`
+                  : `/blog/${post.id.replace(/\.md$/, "")}`;
 
-                <div class="relative flex-1 bg-card/70 backdrop-blur-xl border border-border/50 rounded-[1.5rem] p-6 lg:p-8 hover:border-primary/40 transition-all duration-500 shadow-lg hover:shadow-xl flex flex-col">
-                  <div class="flex items-center justify-between mb-4">
-                    <div class="flex items-center gap-2 text-xs text-muted-foreground font-medium bg-muted/50 px-3 py-1.5 rounded-full border border-border/50">
-                      <Calendar class="w-3.5 h-3.5" />
-                      <time datetime={post.data.pubDate.toISOString()}>
-                        {post.data.pubDate.toLocaleDateString("es-ES", {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        })}
-                      </time>
+              return (
+                <article
+                  class="group relative animate-slide-up h-full flex flex-col"
+                  style={`animation-delay: ${0.2 + (index % 3) * 0.1}s;`}
+                >
+                  <div class="absolute -inset-0.5 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 rounded-[1.75rem] blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
+
+                  <div class="relative flex-1 bg-card/70 backdrop-blur-xl border border-border/50 rounded-[1.5rem] p-6 lg:p-8 hover:border-primary/40 transition-all duration-500 shadow-lg hover:shadow-xl flex flex-col">
+                    <div class="flex items-center justify-between mb-4">
+                      <div class="flex items-center gap-2 text-xs text-muted-foreground font-medium bg-muted/50 px-3 py-1.5 rounded-full border border-border/50">
+                        <Calendar class="w-3.5 h-3.5" />
+                        <time datetime={post.data.pubDate.toISOString()}>
+                          {post.data.pubDate.toLocaleDateString("es-ES", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          })}
+                        </time>
+                      </div>
+
+                      {type === "series" && (
+                        <div class="flex items-center gap-1.5 text-xs font-semibold text-primary bg-primary/10 border border-primary/20 px-2.5 py-1 rounded-full">
+                          <Layers class="w-3 h-3" />
+                          Serie
+                        </div>
+                      )}
                     </div>
-                  </div>
 
-                  <div class="flex-1">
-                    <h3 class="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
-                      <a href={`/blog/${post.slug}`} class="focus:outline-none">
-                        <span
-                          class="absolute inset-0 z-10"
-                          aria-hidden="true"
-                        />
-                        {post.data.title}
-                      </a>
-                    </h3>
-                    <p class="text-sm text-muted-foreground line-clamp-3 mb-6">
-                      {post.data.description}
-                    </p>
-                  </div>
-
-                  {post.data.tags && post.data.tags.length > 0 && (
-                    <div class="flex flex-wrap gap-2 mt-auto pt-4 border-t border-border/30">
-                      {post.data.tags.map((tag: string) => (
-                        <span class="text-xs font-semibold bg-secondary/60 text-secondary-foreground px-2.5 py-1 rounded-lg border border-border/30 whitespace-nowrap">
-                          {tag}
-                        </span>
-                      ))}
+                    <div class="flex-1">
+                      <h3 class="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                        <a href={href} class="focus:outline-none">
+                          <span class="absolute inset-0 z-10" aria-hidden="true" />
+                          {type === "series"
+                            ? (post.data.seriesTitle ?? post.data.title)
+                            : post.data.title}
+                        </a>
+                      </h3>
+                      <p class="text-sm text-muted-foreground line-clamp-3 mb-6">
+                        {post.data.description}
+                      </p>
                     </div>
-                  )}
-                </div>
-              </article>
-            ))}
+
+                    {post.data.tags && post.data.tags.length > 0 && (
+                      <div class="flex flex-wrap gap-2 mt-auto pt-4 border-t border-border/30">
+                        {post.data.tags.map((tag: string) => (
+                          <span class="text-xs font-semibold bg-secondary/60 text-secondary-foreground px-2.5 py-1 rounded-lg border border-border/30 whitespace-nowrap">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </article>
+              );
+            })}
           </div>
         ) : (
           <div
